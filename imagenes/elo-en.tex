@@ -1,0 +1,33 @@
+\documentclass[10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+
+\input{../../../aux/tikzlibrarybayesnet.code.tex}
+\input{../../../aux/encabezado.tex}
+
+
+\begin{document}
+
+\tikz{ %
+        
+        \node[det, fill=black!10] (r) {$r_{ab}$} ; %
+        \node[latent, above=of r, xshift=-0.6cm] (p1) {$p_a$} ; %
+        \node[latent, above=of r, xshift=0.6cm] (p2) {$p_b$} ; %
+        
+        \node[latent, above=of p1] (s1) {$\widehat{s}_a$} ; %
+        \node[latent, above=of p2] (s2) {$\widehat{s}_b$} ; %
+        
+        \node[invisible, right=of s2, xshift=8cm] (s-dist) {};
+        
+        \edge {p1} {r};
+        \edge {p2} {r};
+        \edge {s1} {p1};
+        \edge {s2} {p2};
+	    
+	    \node[const, right=of r, yshift= 0.6cm, xshift=0.8cm] (r-dist) {$\underbrace{\text{result}_{ab}}_{\hfrac{\text{Observable}}{\text{variable}}} = \mathbb{I}(\text{performance}_a > \text{performance}_b)$} ; %
+        \node[const, right=of p2,yshift= 1.3cm, xshift=0.4cm] (p-dist) {$\text{performance}_i \sim N(\overbrace{\widehat{\text{skill}}_i}^{\hfrac{\text{Hidden}}{\text{variable}}},\text{noise}^2)$} ; %
+	    
+       } 
+
+
+\end{document}

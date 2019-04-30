@@ -1,0 +1,57 @@
+\documentclass[10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+
+\input{../../../aux/tikzlibrarybayesnet.code.tex}
+
+
+\begin{document}
+
+\tikz{ %
+        
+        \node[det, fill=black!10] (r) {$r_{ab}$} ; %
+        \node[const, below=of r, yshift=-0.8cm,xshift=-0.8cm] (c_1a) {\scriptsize  with $o:=$ outcome};
+        \node[latent, left=of r] (d) {$d_{ab}$} ; %
+        \node[latent, left=of d] (t) {$t_e$} ; %
+        
+        \node[latent, left=of t,yshift=-1.4cm] (p) {$p_i$} ; %
+        \node[latent, left=of p, yshift=-0.6cm] (s) {$s_i$} ; %
+        \node[obs, left=of p, yshift=0.6cm] (beta) {$\beta$} ; %
+        \node[latent, left=of s] (mu) {$\widehat{\mu}_i$} ; %
+        \node[latent, left=of s, yshift=1.2cm] (sigma) {$\widehat{\sigma}_i$} ; %
+
+        \node[latent, left=of t,yshift=1.4cm] (b) {$b_{ij}$} ; %
+        \node[latent, left=of b, yshift=0.6cm] (sy) {$s_{ij}$} ; %
+        \node[obs, left=of b, yshift=-0.6cm] (alpha) {$\alpha$} ; %
+        \node[latent, left=of sy] (lambda) {$\widehat{\lambda}_{ij}$} ; %
+        \node[latent, left=of sy, yshift=-1.2cm] (gamma) {$\widehat{\gamma}_{ij}$} ; %
+        
+        \edge {d} {r};
+        \edge {t} {d};
+        \edge {p,b} {t};
+        \edge {s,beta} {p};
+	\edge {mu,sigma} {s};
+	\edge {sy,alpha} {b};
+	\edge {lambda,gamma} {sy};
+	
+	\plate {sinergia} {(b)(sy)(alpha)(lambda)(gamma)} {$ i,j \in A_e, i \neq j$}; %
+        \plate {personas} {(p)(s)(beta)(mu)(sigma)} {$ i \in A_e$}; %
+        \plate {equipos} {(sinergia) (personas) (t)} { {\scriptsize with $A$ partition of players} \ \ \ \ \ \ \ \ \  $ 0 < e \leq |A|$}; %
+	\node[invisible, below=of d, yshift=-1cm] (inv_below) {};
+	\node[invisible, above=of r, yshift=0.6cm] (inv_above) {};
+	\plate {comparaciones} {(d) (r) (inv_below) (inv_above)} {$0 < j < |A|$}
+	
+	\node[const, right= of r, xshift=2cm ,yshift=-2.2cm] (result-dist) {$r_j = d_j > 0$} ; %
+	\node[const, above=of result-dist,yshift=0.3cm] (d-dist) {$d_j = t_{o_j} - t_{o_{j+1}}$};  %
+	\node[const, above=of d-dist,yshift=0.3cm] (t-dist) {$t_e = \sum_{i\in A_e} p_i + \sum_{i \neq j \in A_e} s_{ij}$} ; %
+		
+	\node[const, above=of t-dist,xshift=-1.4cm,yshift=0.3cm] (p-dist) {$p_i \sim N(s_i,\beta)$} ; %
+	\node[const, above=of p-dist,yshift=0.3cm] (s-dist) {$s_i \sim N(\widehat{\mu}_i,\widehat{\sigma}_i)$} ; %
+        
+        \node[const, above=of t-dist,xshift=1.6cm,yshift=0.3cm] (b-dist) {$b_{ij} \sim N(s_{ij},\alpha)$} ; %
+	\node[const, above=of b-dist,yshift=0.3cm] (sy-dist) {$s_{ij} \sim N(\widehat{\lambda}_{ij},\widehat{\gamma}_{ij})$} ; %
+        
+       } 
+
+
+\end{document}

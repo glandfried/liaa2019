@@ -1,0 +1,749 @@
+\documentclass[shownotes]{beamer}
+\input{../../aux/diapo_encabezado.tex}
+
+\title[Evidence]{Evidence \\ \large With great dishonesty comes great regularization}
+
+\author[Gustavo Landfried]{Gustavo Landfried \\ \scriptsize \texttt{@GALandfried} \\\vspace{0.2cm}
+MSc in Anthropological Sciences \\
+PhD student in Computer Sciences 
+\vspace{-0.3cm}}
+\institute[DC-ICC-CONICET]{\includegraphics[width=0.4\textwidth]{../../Imagenes/dc-logo}}
+\date{}
+
+\begin{document}
+\begin{frame}[noframenumbering]
+ 
+ \begin{textblock}{100}(23,18)
+ \includegraphics[width=0.3\textwidth]{../../Imagenes/logo_licar} 
+ \end{textblock}
+  \begin{textblock}{100}(74,18)
+ \includegraphics[width=0.3\textwidth]{../../Imagenes/LIAA/logo_version_02} 
+ \end{textblock}
+
+\vspace{2.5cm}
+\maketitle
+ 
+\end{frame}
+
+\footnotesize
+
+\section{Conditional probability}
+
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Conditional probability
+\end{center}
+\end{textblock}
+\vspace{0.75cm}
+
+
+\begin{table}[H]
+\begin{tabular}{c|c|c|c}
+ & $A_1$ & $A_2$ &  \\ \hline
+ $B_1$& 4 & 2 & 6 \\ \hline
+ $B_2$& 76 & 18 & 94\\ \hline
+ & 80 & 20 & 100
+\end{tabular}
+\end{table}
+
+\begin{center}
+What is the chance of an $A_1$ event given $B_1$? 
+\end{center}
+
+\pause
+
+\begin{equation*}
+ P(A_1|B_1) = \frac{P(B_1 \cap A_1)}{P(B_1)}
+\end{equation*}
+
+\pause 
+
+\begin{mdframed}
+Bayes theorem:
+\begin{equation}
+  P(A_1|B_1) = \frac{P(B_1|A_1)P(A_1)}{P(B_1)}
+\end{equation}
+\end{mdframed}
+
+\end{frame}
+
+\subsection{Scientific test example}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large Scientific test example
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+
+{ \footnotesize
+ There is a test that correctly detects vampirism $95\%$ of the time.
+ 
+ $\bullet$ $P(\text{positive}|\text{vampire})=0.95$
+ 
+ \pause \medskip 
+
+ One percent of the time it incorrectly detect normal personas as vampires.
+ 
+ $\bullet$ $P(\text{positive}|\text{mortal})=0.01$
+ 
+ \pause \medskip 
+ 
+ We know that vampires are only $0.1\%$ of the population. 
+ 
+ $\bullet$ $P(\text{vampire})=0.001$
+
+}
+
+\pause
+
+\begin{center}
+ Someone receive a positive test: Is she a vampire?
+\end{center}
+\pause
+\begin{equation*}
+ P(\text{vampire}|\text{positive}) = \frac{P(\text{positive}|\text{vampire})P(\text{vampire})}{P(\text{positive})}
+\end{equation*}
+
+\pause
+
+\begin{center}
+ She has \textbf{only 8.7\% chance} to actually be a vampire!
+\end{center}
+
+
+
+
+\end{frame}
+
+\section{Bayesian inference}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Bayesian inference
+ 
+ \normalsize (or inverse probability)
+\end{center}
+\end{textblock}
+\vspace{0.9cm}
+
+ \begin{framed}
+ \centering
+  All elements of previous examples were frequencies of observations
+  
+ \textbf{Bayesian inference quantify uncertainty about hidden variables}
+
+ Therefore, we need \textbf{belief distributions} for those hidden variables!
+ \end{framed} 
+
+ \pause 
+
+ \begin{equation}
+  \underbrace{P(\text{Belief}|\text{Data})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
+ \end{equation}
+
+ \pause \vspace{0.3cm}
+ 
+ 
+ \centering{In order to update our beliefs after seeing new data (posterior),
+  we need to consider every possible path that could led as the data (likelihood).}
+ 
+
+
+\end{frame}
+
+\subsection{The garden of forking paths: discrete example}
+
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large The garden of forking paths
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+\begin{textblock}{128}(0,21)
+\centering
+ Data: \includegraphics[page=1,width=0.065\textwidth]{imagenes/forkingPath} \hspace{0.3cm}
+ Beliefs: \includegraphics[page=2,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=3,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=4,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=5,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=6,width=0.075\textwidth]{imagenes/forkingPath} 
+ 
+\end{textblock}
+
+\only<1>{
+\begin{textblock}{128}(0,28)
+\centering
+Model:\vspace{0.1cm}
+
+\includegraphics[page=12,width=0.6\textwidth]{imagenes/forkingPath}
+
+\end{textblock}
+}
+
+
+\only<2>{
+\begin{textblock}{128}(0,28)
+\centering
+Model:\vspace{0.1cm}
+
+\includegraphics[page=7,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Belief: \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+\end{textblock}
+}
+
+
+\only<3>{
+\begin{textblock}{128}(0,28)
+\centering
+Model:\vspace{0.1cm}
+
+\includegraphics[page=8,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Belief: \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath}
+\end{textblock}
+}
+
+\only<4>{
+\begin{textblock}{128}(0,28)
+\centering
+Model:\vspace{0.1cm}
+
+\includegraphics[page=9,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Belief: \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath}
+\end{textblock}
+}
+
+\only<5>{
+\begin{textblock}{128}(0,28)
+\centering
+Model:\vspace{0.1cm}
+
+\includegraphics[page=10,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Belief: \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath}
+\end{textblock}
+}
+
+\only<6>{
+\begin{textblock}{128}(0,28)
+\centering
+Model:\vspace{0.1cm}
+
+\includegraphics[page=11,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Belief: \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath}
+\end{textblock}
+}
+
+\only<2>{
+\begin{textblock}{128}(0,70)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+\begin{tabular}{cc}
+ \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
+ & \\
+ & \\
+ & \\
+ & \\
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+\only<3>{
+\begin{textblock}{128}(0,70)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+\begin{tabular}{cc}
+ \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
+ \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
+ & \\
+ & \\
+ & \\
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+\only<4>{
+\begin{textblock}{128}(0,70)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+\begin{tabular}{cc}
+ \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
+ \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
+ \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ \\
+ & \\
+ & \\
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+\only<5>{
+\begin{textblock}{128}(0,70)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+\begin{tabular}{cc}
+ \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
+ \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
+ \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ \\
+ \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ \\
+ & \\
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+\only<6>{
+\begin{textblock}{128}(0,70)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+\begin{tabular}{cc}
+ \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
+ \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
+ \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ \\
+ \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ \\
+ \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ \\
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+\end{frame}
+
+\begin{frame}
+ 
+ \footnotesize
+ 
+ $\bullet$ \textbf{Prior} belief (distribution):
+ \begin{equation*}
+P(B) = \frac{1}{\# \text{Beliefs} }  \ \ \ \ \  \forall B \in \text{Beliefs}  
+ \end{equation*}
+
+\pause \vspace{0.3cm}
+ 
+ $\bullet$ \textbf{Likelihood} (distribution):
+ \begin{equation*}
+P(D|B) = \frac{\text{Ways to produce $D$ given $B$}}{\text{Total ways given $B$}} \ \ \ \ \  \forall B \in \text{Beliefs}  
+ \end{equation*}
+
+\pause \vspace{0.3cm}
+
+$\bullet$ \textbf{Evidence} or Average likelihood (scalar):
+\begin{equation*}
+ P(D) = \sum_{B \in \text{Beliefs}} \underbrace{P(D|B)}_{\text{likelihood}} \underbrace{P(B)}_{\text{prior}}
+\end{equation*}
+
+\pause \vspace{0.3cm}
+
+$\bullet$ \textbf{Posterior} belief (distribution):
+
+\begin{equation*}
+ P(B|D) = \frac{P(D|B)P(D)}{P(D)}\ \ \ \ \  \forall B \in \text{Beliefs}  
+\end{equation*}
+
+ 
+ 
+\end{frame}
+
+\subsection{The garden of forking paths: continuous example}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large The garden of (continuous) forking paths 
+\end{center}
+\end{textblock}
+\vspace{1.25cm}
+
+
+\centering{How to estimate skill of players?}
+
+
+  \begin{figure}[H]     
+     \centering \normalsize
+     \begin{subfigure}[b]{0.4\textwidth}
+       \includegraphics[page=1,width=\textwidth]{../../Imagenes/elo.jpeg} 
+       \caption*{Arpad Elo}
+     \end{subfigure}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \normalsize Elo model
+\end{center}
+\end{textblock}
+
+\centering{
+\includegraphics[width=0.9\textwidth]{imagenes/elo-en}   
+}
+
+\end{frame}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \normalsize TrueSkill
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+\centering{
+\includegraphics[width=1\textwidth]{imagenes/trueskill_versionGeneral-en}   
+}
+ 
+ 
+\begin{equation*}
+ P(s|o,A) = \frac{P(o|s,A)P(s)}{P(o|A)}
+\end{equation*}
+
+ 
+\end{frame}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \normalsize Posterior
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+\Wider[4em]{ 
+\begin{equation*}
+ P(s_i \mid o, A) \propto 
+ \begin{cases}
+  N(s_i \, | \, \mu_i, \sigma_i^2) \, \Phi(\delta(s_i) \, | \, 0, \vartheta - \sigma_i^2) & \text{Win} \\
+  N(s_i \, | \, \mu_i, \sigma_i^2 ) \, (1 - \Phi(\delta(s_i) \, | \, 0, \vartheta - \sigma_i^2)) & \text{Loose}
+ \end{cases}
+\end{equation*}
+
+\includegraphics[width=0.49\textwidth]{imagenes/posterior_win}   
+\includegraphics[width=0.49\textwidth]{imagenes/posterior_loose}   
+}
+\end{frame}
+
+
+\section{Bayesian model inference}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Bayesian model inference
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+\Wider[3em]{ 
+$\bullet$ Which are our beliefs about different hidden models $M$?
+\pause
+\begin{equation*}
+ P(M_k|D) = \frac{P(D|M_k)P(M_k)}{\sum_{i=1}^n P(D|M_i) P(M_i)}
+\end{equation*}
+
+\pause \vspace{0.2cm}
+
+$\bullet$To compare models we can compute their ratio probability,
+\begin{equation*}
+ \text{Bayes factor} = \frac{P(M_1|D)}{P(M_2|D)} = \frac{P(D|M_1)P(M_1)}{P(D|M_2)P(M_2)} \pause = \frac{P(D|M_1)}{\underbrace{P(D|M_2)}_{\text{\scriptsize Evidence!}}}   
+\end{equation*}
+
+\pause \vspace{0.2cm}
+
+}
+
+\begin{mdframed}[backgroundcolor=black!20]
+\centering
+$P(M_i|D) > P(M_j|D) \Longleftrightarrow P(D|M_i) > P(D|M_j)$
+
+\end{mdframed}
+
+ 
+\end{frame}
+
+\subsection{Distance to the truth}
+\begin{frame}
+\footnotesize
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Distance to the truth
+\end{center}
+\end{textblock}
+\vspace{0.75cm}
+\Wider[3em]{
+% 
+% Entropy of a probability distribution
+% \begin{equation}
+%  H(P(C)) = -E(log(P(C))) = - \sum_{i=1}^n P(C_i) log(P(C_i))
+% \end{equation}
+% 
+% \pause
+% \vspace{0.3cm}
+
+Divergence between truth $P(C)=p$ and model $P(C|M_q)=q$ for each event $C_i \in C$, $P(C_i)=p_i$ and $P(C_i|M_q) = q_i$
+\begin{equation}
+ D_{KL}(p,q) = \sum_{i=1}^{|C|} p_i  (\text{log}(p_i) - \text{log}(q_i))
+\end{equation}
+
+
+\begin{equation}\footnotesize
+  D_{KL}(p,q) - D_{KL}(p,r) = \underbrace{\sum_{i=1}^{|C|} p_i \text{log}(r_i)}_{E[\text{log}(r)]} -\underbrace{\sum_{i=1}^{|C|} p_i \text{log}(q_i)}_{E[\text{log}(q)]} 
+\end{equation}
+
+}  
+\end{frame}
+
+\begin{frame}
+ 
+ 
+\begin{equation*}
+\begin{align*}
+ E[\text{log}(q)] & = \sum_{i=1}^{|C|} P(C_i) \text{log}(P(C_i|M_q)) \\ 
+ \pause & \approx  \frac{1}{|D|} \sum_{i=1}^{|D|} \text{log}(P(D_i|M_q)) \pause = \frac{1}{|D|} \text{log}\underbrace{\left(\prod_{i=1}^{|D|} P(D|M_q)\right)}_{\text{\scriptsize  Evidence!}}
+\end{align*}
+\end{equation*}
+
+ 
+ \begin{equation*}
+ \begin{align*}
+\text{log(Bayes factor)} & = \text{log}\left(\frac{P(D|M_q)}{P(D|M_r)}\right) \\
+& = \text{log}\left(P(D|M_r)\right) -\text{log}\left(P(D|M_q)\right) \\
+& \propto \frac{1}{|D|} \left(\text{log}\left(P(D|M_r)\right) -\text{log}\left(P(D|M_q)\right)\right) \\
+& \approx - (D_{KL}(p,q) - D_{KL}(p,r)) 
+ \end{align*}
+ \end{equation*}
+
+ 
+\end{frame}
+
+
+
+\section{The hacked-belief approach}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \Large The hacked-belief approach
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+
+\begin{center}
+ 
+ \begin{mdframed}
+ \centering
+  Who has no doubt? Who has only one belief?
+ \end{mdframed}
+ 
+ \vspace{0.3cm}
+ \pause
+ 
+ \begin{itemize}
+  \item[$\bullet$] God (if exists) \pause
+  \item[$\bullet$] Mathematicians (and others non empricial sciences) \pause
+  \item[$\bullet$] Maybe some extremists \pause
+  \item[$\bullet$] \huge All non-bayesian machine learning
+ \end{itemize}
+
+ 
+ 
+ 
+\end{center}
+
+ 
+\end{frame}
+
+\subsection{Bayesian no-doubt case}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Bayesian no-doubt case
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+ 
+ \centering{Likelihood is just the Evidence}
+\begin{mdframed}[backgroundcolor=black!15]
+\centering
+ $\#$Beliefs = 1  $\Longleftrightarrow$ Likelihood = Evidence  
+\end{mdframed}
+ 
+ \vspace{0.9cm}
+\pause
+
+ 
+ \centering{Fixed beliefs, even with infinite new data}
+ \begin{mdframed}[backgroundcolor=black!15]
+ \centering
+ $\#$Beliefs = 1 $\Longrightarrow$ $\underbrace{P(B)}_{\text{\scriptsize Prior}} = \underbrace{P(B|D)}_{\text{\scriptsize Posterior}} \ \ \ \ \hfrac{\forall D \in \text{Data}}{\forall B \in \text{Beliefs}}$
+\end{mdframed}
+
+\end{frame}
+
+
+\subsection{With great dishonesty, great consequence comes}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large The great dishonesty
+\end{center}
+\end{textblock}
+
+\begin{mdframed}
+ \centering{ $\overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}_{D,M}$  }
+\end{mdframed}
+
+\vspace{0.6cm}
+
+ \begin{equation*}
+\begin{split}
+P(D|\widehat{B}_{D,M},M) & = \overbrace{P(D|\underset{B}{\text{argmax}} P(D|B,M), M)}^{\hfrac{\text{\scriptsize Hacked \textbf{likelihood} }}{\text{\scriptsize  given training data}}} = \overbrace{P(D|D, M)}^{\hfrac{\text{\scriptsize Hacked \textbf{evidence} }}{\text{\scriptsize given training data}}}\\
+&= \int_B P(D|B,M) \mathbb{I}(B=\widehat{B}_{D,M} ) dB
+\end{split}
+ \end{equation*}
+
+ 
+\end{frame}
+
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large The great consequence
+\end{center}
+\end{textblock}
+
+
+ \begin{mdframed}
+  \centering The hacked belief approach 
+  
+  always ask for more complex models 
+ \end{mdframed}
+ 
+ \centering{With great dishonesty, great overfiting}
+
+
+\end{frame}
+
+
+
+
+\subsection{Example}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large Example
+\end{center}
+\end{textblock}
+\vspace{0.75cm}
+
+
+\Wider[1cm]{
+\begin{center}
+ Which model has highest probability given the observed data $D$
+ \end{center}
+}
+
+
+ \begin{table}[H]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ Ana & 0.6 & 0.4 & 0.4 & 0.4 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 \\ 
+\hline \hline
+ Observed& \includegraphics[width=0.02\textwidth]{imagenes/sol}  & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} \\
+\hline \hline
+ Berta & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0   \\
+ \hline
+\end{tabular}
+\end{table}
+
+\pause
+
+\Wider[1cm]{
+\begin{itemize}
+ \item[$\bullet$] Berta seems to do a better job according to all data science metrics
+ 
+ \item[$\bullet$] However Ana's model assigns highest probability to the observed data!! 
+\end{itemize}
+}
+
+\pause \vspace{0.2cm}
+
+  \begin{table}[H]
+\begin{tabular}{c|c}
+ & $P(D|M) = \prod P(D_i|M)$ \\ \hline
+ Ana &  $0.4^{10}= 10.1E^{-5}$  \\
+Berta & $1.0^8  \times 0^2 = 0 = 1E^{-\infty}$\\
+ \end{tabular}
+\end{table}
+\vspace{-0.1cm}
+\begin{framed}
+\centering 
+
+Ana has an infinitely more likely model
+\end{framed}
+
+
+\end{frame}
+
+
+% 
+% \subsection{Metricas}
+% 
+% \begin{frame}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{rlll}
+%   \hline
+%  & Ana & Berta & Gana \\ 
+%   \hline
+% Mean squared error & 3.6 & 2 & Berta \\ 
+%   Mean absolute error & 6 & 2 & Berta \\ 
+%   Hit rate & 0.4 & 0.8 & Berta \\ 
+%   Accuracy & 0 & 0.8 & Berta \\ 
+%   Precsion & 0 & 0.67 & Berta \\ 
+%   Recall & NaN & 0.67 & Berta \\ 
+%   F1 score & NaN & 0.25 & Berta \\ 
+%   ROC area & 0 & 0.76 & Berta \\ 
+%   Evidence & $10.4E^{-5}$ & 0 & Ana \\ 
+%    \hline
+% \end{tabular}
+% \end{table}
+% 
+% 
+% \end{frame}
+% 
+
+\end{document}
+
+
+

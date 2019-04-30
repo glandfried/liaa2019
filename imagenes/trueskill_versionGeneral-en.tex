@@ -1,0 +1,42 @@
+\documentclass[10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+
+\input{../../../aux/tikzlibrarybayesnet.code.tex}
+
+\begin{document}
+  \tikz{ %
+        
+        \node[det, fill=black!10] (r) {$r_j$} ; %
+        \node[const, below=of r, yshift=-0.8cm,xshift=-0.8cm] (c_1a) {\scriptsize  with $o:=$ outcome};
+        \node[latent, left=of r] (d) {$d_j$} ; %
+        \node[latent, left=of d] (t) {$t_e$} ; %
+        \node[latent, left=of t] (p) {$p_i$} ; %
+        \node[latent, left=of p, yshift=-0.6cm] (s) {$s_i$} ; %
+        \node[obs, left=of p, yshift=0.6cm] (beta) {$\beta$} ; %
+        \node[latent, left=of s] (mu) {$\widehat{\mu}_i$} ; %
+        \node[latent, left=of s, yshift=1.2cm] (sigma) {$\widehat{\sigma}_i$} ; %
+        
+        
+        \edge {d} {r};
+        \edge {t} {d};
+        \edge {p} {t};
+        \edge {s} {p};
+        \edge {beta} {p};
+	\edge {mu,sigma} {s};
+	
+        \plate {personas} {(p)(s)(beta)(mu)(sigma)} {$i \in A_e$}; %
+        \plate {equipos} {(personas) (t)} { {\scriptsize with $A$ partition of players} \ \ \ \ \ \ \ \ \  $ 0 < e \leq |A|$}; %
+	\node[invisible, below=of d, yshift=-1cm,xshift=-0.5cm] (inv_below) {};
+	\node[invisible, above=of r, yshift=0.6cm] (inv_above) {};
+	\plate {comparaciones} {(d) (r) (inv_below) (inv_above)} {$0 < j < |A|$}
+	
+	\node[const, right= of r, xshift=1.2cm ,yshift=-2.1cm] (result-dist) {$r_j = d_j > 0$} ; %
+	\node[const, above=of result-dist,yshift=0.3cm] (d-dist) {$d_j = t_{o_j} - t_{o_{j+1}}$};  %
+	\node[const, above=of d-dist,yshift=0.3cm] (t-dist) {$t_e = \sum_{i\in A_e} p_i $} ; %
+	\node[const, above=of t-dist,yshift=0.3cm] (p-dist) {$p_i \sim N(s_i,\beta^2)$} ; %
+	\node[const, above=of p-dist,yshift=0.3cm] (s-dist) {$s_i \sim N(\widehat{\mu}_i,\widehat{\sigma}_i^2)$} ; %
+              
+        }
+
+\end{document}

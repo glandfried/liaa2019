@@ -1,7 +1,7 @@
 \documentclass[shownotes]{beamer}
 \input{../../aux/diapo_encabezado.tex}
 
-\title[Evidence]{Evidence \\ \large With great dishonesty comes great regularization}
+\title[Bayesian inference]{Evidence in favor of a scientific theory\\ \large With great dishonesty comes great overfitting}
 
 \author[Gustavo Landfried]{Gustavo Landfried \\ \scriptsize \texttt{@GALandfried} \\\vspace{0.2cm}
 MSc in Anthropological Sciences \\
@@ -120,12 +120,12 @@ Bayes theorem:
 
 \end{frame}
 
-\section{Bayesian inference}
+\subsection{The inferential jump}
 
 \begin{frame}
 \begin{textblock}{128}(0,8)
 \begin{center}
- \Large Bayesian inference
+ \Large The inferential jump
  
  \normalsize (or inverse probability)
 \end{center}
@@ -153,11 +153,11 @@ Bayes theorem:
  \centering{In order to update our beliefs after seeing new data (posterior),
   we need to consider every possible path that could led as the data (likelihood).}
  
-
-
 \end{frame}
 
-\subsection{The garden of forking paths: discrete example}
+\section{The inferential jump}
+
+\subsection{The garden of forking paths}
 
 
 \begin{frame}
@@ -369,7 +369,7 @@ $\bullet$ \textbf{Posterior} belief (distribution):
  
 \end{frame}
 
-\subsection{The garden of forking paths: continuous example}
+\subsection{The garden of (continuous) forking paths }
 
 \begin{frame}
  \begin{textblock}{128}(0,8)
@@ -482,65 +482,23 @@ $P(M_q|D) > P(M_r|D) \Longleftrightarrow P(D|M_q) > P(D|M_r)$
 
 \end{mdframed}
 
- 
-\end{frame}
-
-\subsection{Distance to the truth}
-\begin{frame}
-\begin{textblock}{128}(0,8)
-\begin{center}
- \large Distance to the truth
-\end{center}
-\end{textblock}
-\vspace{0.5cm}
-
-\Wider[3em]{
-% 
-% Entropy of a probability distribution
-% \begin{equation}
-%  H(P(C)) = -E(log(P(C))) = - \sum_{i=1}^n P(C_i) log(P(C_i))
-% \end{equation}
-% 
-% \pause
-% \vspace{0.3cm}
-
-
-\begin{equation}
- D_{KL}(p,q) = \sum_{i=1}^{|C|} p_i  (\text{log}(p_i) - \text{log}(q_i))
-\end{equation}
-With truth $P(C_i)=p_i$ and model $P(C_i|M_q)=q_i$, for each event $C_i \in C$%, and
-
-\pause
-
-\vspace{0.9cm}
-
-
-$\bullet$ The log Bayes factor is essentially the relative distance to the truth
-
-\begin{mdframed}[backgroundcolor=black!15]
-\begin{equation}\footnotesize
-  D_{KL}(p,q) - D_{KL}(p,r) \overset{\text{Annex 1}}{=} \frac{1}{|D|} \text{log}\left(\text{Bayes factor}(r,q)\right) 
-\end{equation}
-\end{mdframed}
-
-
-\pause 
 
 \begin{center}
  \Large All you need is evidence
-\end{center}
-
-
-
-
+\end{center} 
 
  
-
-}  
 \end{frame}
 
+\subsection{Evidence}
 
 \begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large Evidence
+\end{center}
+\end{textblock}
+\vspace{1cm}
  
  \centering{
  \includegraphics[width=1\textwidth]{imagenes/evidence}
@@ -548,123 +506,6 @@ $\bullet$ The log Bayes factor is essentially the relative distance to the truth
  
 \end{frame}
 
-
-
-\section{The hacked-belief approach}
-
-\begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \Large The hacked-belief approach
-\end{center}
-\end{textblock}
-\vspace{0.5cm}
-
-
-\begin{center}
- 
- \begin{mdframed}
- \centering
-  Who has no doubt? Who has only one belief?
- \end{mdframed}
- 
- \vspace{0.3cm}
- \pause
- 
- \begin{itemize}
-  \item[$\bullet$] God (if exists) \pause
-  \item[$\bullet$] Mathematicians (and others non empricial sciences) \pause
-  \item[$\bullet$] Maybe some extremists \pause
-  \item[$\bullet$] \huge All non-bayesian machine learning
- \end{itemize}
-
- 
- 
- 
-\end{center}
-
- 
-\end{frame}
-
-\subsection{Bayesian no-doubt case}
-
-\begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \Large Bayesian no-doubt case
-\end{center}
-\end{textblock}
-\vspace{0.5cm}
-
- 
- \centering{Likelihood is just the Evidence}
-\begin{mdframed}[backgroundcolor=black!15]
-\centering
- $\#$Beliefs = 1  $\Longleftrightarrow$ Likelihood = Evidence  
-\end{mdframed}
- 
- \vspace{0.9cm}
-\pause
-
- 
- \centering{Fixed beliefs, even with infinite new data}
- \begin{mdframed}[backgroundcolor=black!15]
- \centering
- $\#$Beliefs = 1 $\Longrightarrow$ $\underbrace{P(B)}_{\text{\scriptsize Prior}} = \underbrace{P(B|D)}_{\text{\scriptsize Posterior}} \ \ \ \ \hfrac{\forall D \in \text{Data}}{\forall B \in \text{Beliefs}}$
-\end{mdframed}
-
-\end{frame}
-
-
-\subsection{With great dishonesty, great consequence comes}
-
-\begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \large The great dishonesty
-\end{center}
-\end{textblock}
-
-\begin{mdframed}
- \centering{ $\overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}_{D,M}$  }
-\end{mdframed}
-
-\vspace{0.6cm}
-
- \begin{equation*}
-\begin{split}
-P(D|\widehat{B}_{D,M},M) & = \overbrace{P(D|\underset{B}{\text{argmax}} P(D|B,M), M)}^{\hfrac{\text{\scriptsize Hacked \textbf{likelihood} }}{\text{\scriptsize  given training data}}} = \overbrace{P(D|D, M)}^{\hfrac{\text{\scriptsize Hacked \textbf{evidence} }}{\text{\scriptsize given training data}}}\\
-&= \int_B P(D|B,M) \mathbb{I}(B=\widehat{B}_{D,M} ) dB
-\end{split}
- \end{equation*}
-
- 
-\end{frame}
-
-
-\begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \large The great consequence
-\end{center}
-\end{textblock}
-
-
- \begin{mdframed}
-  \centering The hacked belief approach 
-  
-  always ask for more complex models 
- \end{mdframed}
- 
- \centering{With great dishonesty, great overfiting}
-
-
-\end{frame}
-
-
-
-
-\subsection{Example}
 
 \begin{frame}
 \begin{textblock}{128}(0,8)
@@ -752,45 +593,233 @@ Ana has an infinitely more likely model
 % 
 
 
+
+
 \begin{frame}
 \begin{textblock}{128}(0,8)
 \begin{center}
-Annex 1 \\ 
- \scriptsize Proof: Deviance -- Bayes factor
+ \large Linear regression example
+\end{center}
+\end{textblock}
+\vspace{0.75cm}
+
+\centering{
+ \includegraphics[width=0.8\textwidth]{imagenes/minka.png}
+ }
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \normalsize Evidence vs maximum likelihood
+\end{center}
+\end{textblock}
+\vspace{1cm}
+\Wider[4em]{
+
+\centering{
+ \includegraphics[width=0.49\textwidth]{imagenes/minka_evidence.png}
+ \includegraphics[width=0.49\textwidth]{imagenes/minka_likelihood.png}
+ }
+}
+
+\begin{mdframed}[backgroundcolor=black!15]
+\centering \Large
+We do not need any test set
+\end{mdframed}
+
+
+
+
+
+\end{frame}
+
+
+\section{Bayesian no-doubt case}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Bayesian no-doubt case
 \end{center}
 \end{textblock}
 \vspace{0.5cm}
 
 
-\tiny
+ \centering{Fixed beliefs, even with infinite new data}
+ \begin{mdframed}[backgroundcolor=black!15]
+ \centering
+ $\#$Beliefs = 1 $\Longrightarrow$ $\underbrace{P(B)}_{\text{\scriptsize Prior}} = \underbrace{P(B|D)}_{\text{\scriptsize Posterior}} \ \ \ \ \hfrac{\forall D \in \text{Data}}{\forall B \in \text{Beliefs}}$
+\end{mdframed}
 
-\begin{equation}
-\text{Deviance}(q,r) = D_{KL}(p,q) - D_{KL}(p,r) = \underbrace{\sum_{i=1}^{|C|} p_i \text{log}(r_i)}_{E[\text{log}(r)]} -\underbrace{\sum_{i=1}^{|C|} p_i \text{log}(q_i)}_{E[\text{log}(q)]}   
- \end{equation}
+ \vspace{0.9cm}
+\pause 
 
+
+ \centering{Likelihood is just the Evidence}
+\begin{mdframed}[backgroundcolor=black!15]
+\centering
+ $\#$Beliefs = 1  $\Longleftrightarrow$ Likelihood = Evidence  
+\end{mdframed}
+ 
+
+ 
+
+\end{frame}
+
+
+
+\subsection{The hacked-belief approach}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large The hacked-belief approach
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+
+\begin{center}
+ 
+ \begin{mdframed}
+ \centering
+  Who has no doubt? Who has only one belief?
+ \end{mdframed}
  
  \vspace{0.3cm}
+ \pause
  
- Where
- \begin{equation*}
-\begin{align*}
- E[\text{log}(q)] & = \sum_{i=1}^{|C|} P(C_i) \text{log}(P(C_i|M_q))  \approx  \frac{1}{|D|} \sum_{i=1}^{|D|} \text{log}(P(D_i|M_q)) \\
- & = \frac{1}{|D|} \text{log}\left(\prod_{i=1}^{|D|} P(D_i|M_q)\right)= \frac{1}{|D|} \text{log}\underbrace{(P(D|M_q))}_{\text{Evidence!}}
-\end{align*}
-\end{equation*}
+ \begin{itemize}
+  \item[$\bullet$] God (if exists) \pause
+  \item[$\bullet$] Mathematicians (and others non empricial sciences) \pause
+  \item[$\bullet$] Maybe some extremists \pause
+  \item[$\bullet$] \huge All non-bayesian machine learning
+ \end{itemize}
 
-\vspace{0.3cm}
+ 
+ 
+ 
+\end{center}
 
-Then
-\begin{equation*}
-\begin{align*}
-D_{KL}(p,q) - D_{KL}(p,r) & \approx \frac{1}{|D|} \text{log}(P(D|M_q)) - \frac{1}{|D|} \text{log}(P(D|M_q)) \\
-& = \frac{1}{|D|} \text{log}\left(\frac{P(D|M_r)}{P(D|M_q)} \right) \\
-& = \frac{1}{|D|} \text{log}\left(\text{Bayes factor}\right) 
-\end{align*}
- \end{equation*}
  
 \end{frame}
+
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large The great dishonesty
+\end{center}
+\end{textblock}
+
+\begin{mdframed}
+ \centering{ $\overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}_{D,M}$  }
+\end{mdframed}
+
+\vspace{0.6cm}
+
+ \begin{equation*}
+\begin{split}
+P(D|\widehat{B}_{D,M},M) & = \overbrace{P(D|\underset{B}{\text{argmax}} P(D|B,M), M)}^{\hfrac{\text{\scriptsize Hacked \textbf{likelihood} }}{\text{\scriptsize  given training data}}} = \overbrace{P(D|D, M)}^{\hfrac{\text{\scriptsize Hacked \textbf{evidence} }}{\text{\scriptsize given training data}}}%\\
+%&= \int_B P(D|B,M) \mathbb{I}(B=\widehat{B}_{D,M} ) dB
+\end{split}
+ \end{equation*}
+
+
+ \pause
+ \vspace{0.6cm}
+ 
+\centering{\large With great dishonesty, comes great regularization {\tiny Zivik talk} }
+ 
+ 
+
+\end{frame}
+
+
+
+% 
+% 
+% 
+% \begin{frame}
+%  
+%  \begin{center}
+%   \Large Annex
+%  \end{center}
+% 
+%  
+% \end{frame}
+% 
+% 
+% \begin{frame}
+% \begin{textblock}{128}(0,8)
+% \begin{center}
+% Annex 1 \\ 
+%  \scriptsize Proof: Deviance -- Bayes factor
+% \end{center}
+% \end{textblock}
+% \vspace{0.5cm}
+% 
+% 
+% \tiny
+% 
+% % 
+% Entropy of a probability distribution
+% \begin{equation}
+%  H(P(C)) = -E(log(P(C))) = - \sum_{i=1}^n P(C_i) log(P(C_i))
+% \end{equation}
+% 
+% \pause
+% \vspace{0.3cm}
+% 
+% $\bullet$ The log Bayes factor is essentially the relative distance to the truth
+% 
+% \begin{mdframed}[backgroundcolor=black!15]
+% \begin{equation}\footnotesize
+%   D_{KL}(p,q) - D_{KL}(p,r) \overset{\text{Annex 1}}{=} \frac{1}{|D|} \text{log}\left(\text{Bayes factor}(r,q)\right) 
+% \end{equation}
+% \end{mdframed}
+% 
+% 
+% 
+% \begin{equation}
+%  D_{KL}(p,q) = \sum_{i=1}^{|C|} p_i  (\text{log}(p_i) - \text{log}(q_i))
+% \end{equation}
+% With truth $P(C_i)=p_i$ and model $P(C_i|M_q)=q_i$, for each event $C_i \in C$%, and
+% 
+% 
+% 
+% 
+% \begin{equation}
+% \text{Deviance}(q,r) = D_{KL}(p,q) - D_{KL}(p,r) = \underbrace{\sum_{i=1}^{|C|} p_i \text{log}(r_i)}_{E[\text{log}(r)]} -\underbrace{\sum_{i=1}^{|C|} p_i \text{log}(q_i)}_{E[\text{log}(q)]}   
+%  \end{equation}
+% 
+%  
+%  \vspace{0.3cm}
+%  
+%  Where
+%  \begin{equation*}
+% \begin{align*}
+%  E[\text{log}(q)] & = \sum_{i=1}^{|C|} P(C_i) \text{log}(P(C_i|M_q))  \approx  \frac{1}{|D|} \sum_{i=1}^{|D|} \text{log}(P(D_i|M_q)) \\
+%  & = \frac{1}{|D|} \text{log}\left(\prod_{i=1}^{|D|} P(D_i|M_q)\right)= \frac{1}{|D|} \text{log}\underbrace{(P(D|M_q))}_{\text{Evidence!}}
+% \end{align*}
+% \end{equation*}
+% 
+% \vspace{0.3cm}
+% 
+% Then
+% \begin{equation*}
+% \begin{align*}
+% D_{KL}(p,q) - D_{KL}(p,r) & \approx \frac{1}{|D|} \text{log}(P(D|M_q)) - \frac{1}{|D|} \text{log}(P(D|M_q)) \\
+% & = \frac{1}{|D|} \text{log}\left(\frac{P(D|M_r)}{P(D|M_q)} \right) \\
+% & = \frac{1}{|D|} \text{log}\left(\text{Bayes factor}\right) 
+% \end{align*}
+%  \end{equation*}
+%  
+% \end{frame}
 
 \end{document}
 

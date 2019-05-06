@@ -1,7 +1,7 @@
 \documentclass[shownotes]{beamer}
 \input{../../aux/diapo_encabezado.tex}
 
-\title[Bayesian inference]{Evidence in favor of a scientific theory\\ \large With great dishonesty comes great overfitting}
+\title[Bayesian inference]{Evidence in favor of a scientific theory\\ \large With great complexity comes great honesty}
 
 \author[Gustavo Landfried]{Gustavo Landfried \\ \scriptsize \texttt{@GALandfried} \\\vspace{0.2cm}
 MSc in Anthropological Sciences \\
@@ -27,13 +27,30 @@ PhD student in Computer Sciences
 
 \footnotesize
 
-\section{Conditional probability}
-
 
 \begin{frame}
 \begin{textblock}{128}(0,8)
 \begin{center}
- \Large Conditional probability
+ \Large Why Bayesian inference?
+\end{center}
+\end{textblock}
+\vspace{0.75cm}
+ 
+ \Wider[0.3em]{
+ \begin{mdframed}[backgroundcolor=black!15]
+\centering \Large
+Allows us to optimally update a priori beliefs given a model and data.
+ \end{mdframed}
+}
+ 
+\end{frame}
+
+\section{Conditional probability}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Where comes from? 
 \end{center}
 \end{textblock}
 \vspace{0.75cm}
@@ -49,7 +66,7 @@ PhD student in Computer Sciences
 \end{table}
 
 \begin{center}
-What is the chance of an $A_1$ event given $B_1$? 
+\large From conditional probability
 \end{center}
 
 \pause
@@ -102,21 +119,23 @@ Bayes theorem:
 \pause
 
 \begin{center}
- Someone receive a positive test: Is she a vampire?
+ Someone receive a positive test: 
+ 
+ \pause
+ She has \textbf{only 8.7\% chance} to actually be a vampire!?
 \end{center}
-\pause
+
 \begin{equation*}
  P(\text{vampire}|\text{positive}) = \frac{P(\text{positive}|\text{vampire})P(\text{vampire})}{P(\text{positive})}
 \end{equation*}
 
 \pause
 
-\begin{center}
- She has \textbf{only 8.7\% chance} to actually be a vampire!
-\end{center}
 
-
-
+\begin{mdframed}[backgroundcolor=black!15]
+ \centering \normalsize
+ In this example all frequencies were observable
+\end{mdframed}
 
 \end{frame}
 
@@ -126,32 +145,30 @@ Bayes theorem:
 \begin{textblock}{128}(0,8)
 \begin{center}
  \Large The inferential jump
- 
- \normalsize (or inverse probability)
 \end{center}
 \end{textblock}
 \vspace{0.9cm}
 
- \begin{framed}
- \centering
-  All elements of previous examples were frequencies of observations
-  
- \textbf{Bayesian inference quantify uncertainty about hidden variables}
+\Wider[3em]{
+ \begin{mdframed}
+ \centering \normalsize
+  \textbf{Bayesian inference is about about hidden variables}
 
- Therefore, we need \textbf{belief distributions} for those hidden variables!
- \end{framed} 
-
+ About our \textbf{belief distributions} for those hidden variables!
+ \end{mdframed} 
+}
  \pause 
 
+ \vspace{0.6cm}
+ 
  \begin{equation}
-  \underbrace{P(\text{Belief}|\text{Data})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
+  \underbrace{P(\text{Belief}|\text{Data},\text{Model})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief},\text{Model})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief}|\text{Model})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data}|\text{Model})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
  \end{equation}
 
- \pause \vspace{0.3cm}
+ \pause \vspace{0.5cm}
  
  
- \centering{In order to update our beliefs after seeing new data (posterior),
-  we need to consider every possible path that could led as the data (likelihood).}
+ \centering{To update our beliefs (posterior), we need to consider every possible path in our \textbf{model} that could led as to the observed \textbf{data} (likelihood).}
  
 \end{frame}
 

@@ -147,32 +147,89 @@ Bayes theorem:
  \Large The inferential jump
 \end{center}
 \end{textblock}
-\vspace{0.9cm}
 
-\Wider[3em]{
- \begin{mdframed}
- \centering \normalsize
+\begin{textblock}{128}(0,25)
+ \centering 
   \textbf{Bayesian inference is about about hidden variables}
 
- About our \textbf{belief distributions} for those hidden variables!
- \end{mdframed} 
+ About our \textbf{belief distributions} of those hidden variables!
+\end{textblock}
+
+\begin{textblock}{128}(0,40)
+\only<2>{
+\begin{equation*}
+\underbrace{P(\text{Belief}|\text{Data})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
+\end{equation*}
 }
- \pause 
 
- \vspace{0.6cm}
- 
- \begin{equation}
-  \underbrace{P(\text{Belief}|\text{Data},\text{Model})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief},\text{Model})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief}|\text{Model})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data}|\text{Model})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
- \end{equation}
+\only<3->{  
+\begin{equation*}
+\underbrace{P(\text{Belief}|\text{Data},\text{Model})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief},\text{Model})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief}|\text{Model})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data}|\text{Model})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
+ \end{equation*} 
+}
+\end{textblock}
 
- \pause \vspace{0.5cm}
+
+\begin{textblock}{112}(8,70)
+\only<4->{ 
+To update our beliefs (posterior), we need to
+\vspace{-0.15cm}
+ \begin{mdframed}[backgroundcolor=black!15] 
+ \centering \large 
+  Consider every possible path in the model
+  that could have lead as to the observed data (likelihood).
+ \end{mdframed}
+ }
+\end{textblock}
+
  
- 
- \centering{To update our beliefs (posterior), we need to consider every possible path in our \textbf{model} that could led as to the observed \textbf{data} (likelihood).}
  
 \end{frame}
 
 \section{The inferential jump}
+
+\begin{frame}
+ 
+ \footnotesize
+ 
+$\bullet$ \textbf{Prior} belief (distribution):
+ \begin{equation*}
+P(B|M) = \frac{1}{\# \text{Beliefs} }  \ \ \ \ \  \forall B \in \text{Beliefs}  
+ \end{equation*}
+
+\pause \vspace{0.3cm}
+
+
+ $\bullet$ \textbf{Likelihood} or average ways that produce data (distribution):
+ \begin{equation*}
+P(D|B,M) =  \frac{\text{Ways to produce $D$ given $B$ and $M$}}{\text{Total ways given $B$ and $M$}} \ \ \ \ \  \forall  B \in \text{Beliefs}  
+ \end{equation*}
+
+ 
+ %  \begin{equation*}
+% P(D|B,M) =  \sum_{W}^{\hfrac{\text{Ways to produce $D$}}{\text{given $B$ and $M$}}} P(W|B,M) \ \ \ \ \  \forall  B \in \text{Beliefs}  
+%  \end{equation*}
+
+\pause \vspace{0.3cm}
+
+
+$\bullet$ \textbf{Evidence} or Average likelihood (scalar):
+\begin{equation*}
+ P(D|M) = \sum_{B \in \text{Beliefs}} \underbrace{P(D|B,M)}_{\text{likelihood}} \underbrace{P(B|M)}_{\text{prior}}
+\end{equation*}
+
+\pause \vspace{0.3cm}
+
+$\bullet$ \textbf{Posterior} belief (distribution):
+
+\begin{equation*}
+ P(B|D,M) = \frac{P(D|B,M)P(B|M)}{P(D|M)}\ \ \ \ \  \forall B \in \text{Beliefs}  
+\end{equation*}
+
+ 
+\end{frame}
+
+
 
 \subsection{The garden of forking paths}
 
@@ -185,205 +242,486 @@ Bayes theorem:
 \end{textblock}
 \vspace{0.5cm}
 
-\begin{textblock}{128}(0,21)
+\begin{textblock}{128}(0,19)
 \centering
  Data: \includegraphics[page=1,width=0.065\textwidth]{imagenes/forkingPath} \hspace{0.3cm}
  Beliefs: \includegraphics[page=2,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=3,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=4,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=5,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=6,width=0.075\textwidth]{imagenes/forkingPath} 
+
+ \vspace{0.2cm}
+
+  Model: Data $\sim \text{Binomial}(n,p)$\vspace{0.1cm}
  
 \end{textblock}
 
-\only<1>{
-\begin{textblock}{128}(0,28)
+\only<2>{
+\begin{textblock}{128}(90,66)
+ \scriptsize (First marbel)
+\end{textblock}
+\begin{textblock}{128}(0,30)
+\end{textblock}
+
+ \begin{textblock}{128}(0,30)
 \centering
-Model:\vspace{0.1cm}
+ 
 
 \includegraphics[page=12,width=0.6\textwidth]{imagenes/forkingPath}
 
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+
 \end{textblock}
 }
 
 
-\only<2>{
-\begin{textblock}{128}(0,28)
+\only<3>{
+\begin{textblock}{128}(90,66)
+ \scriptsize (Second marbel)
+\end{textblock}
+
+\begin{textblock}{128}(0,30)
 \centering
-Model:\vspace{0.1cm}
+ 
+
+\includegraphics[page=13,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+
+\end{textblock}
+}
+
+\only<4>{
+\begin{textblock}{128}(90,66)
+ \scriptsize (Second marbel)
+\end{textblock}
+\begin{textblock}{128}(0,30)
+\centering
+ 
+
+\includegraphics[page=14,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+
+\end{textblock}
+}
+
+\only<5>{
+\begin{textblock}{128}(90,66)
+ \scriptsize (Third marbel)
+\end{textblock}
+\begin{textblock}{128}(0,30)
+\centering
+ 
+
+\includegraphics[page=15,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+
+\end{textblock}
+}
+
+\only<6>{
+\begin{textblock}{128}(90,66)
+ \scriptsize (Third marbel)
+\end{textblock}
+ \begin{textblock}{128}(0,30)
+\centering
+ 
+
+\includegraphics[page=16,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+
+\end{textblock}
+}
+
+\only<7>{
+\begin{textblock}{128}(0,30)
+\centering
+ 
+
+\includegraphics[page=16,width=0.6\textwidth]{imagenes/forkingPath}
+
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+
+\end{textblock}
+}
+
+
+\only<8>{
+ \begin{textblock}{128}(0,30)
+\centering
+ 
 
 \includegraphics[page=7,width=0.6\textwidth]{imagenes/forkingPath}
 
-\scriptsize Belief: \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath}
 \end{textblock}
 }
 
 
-\only<3>{
-\begin{textblock}{128}(0,28)
+\only<9>{
+ \begin{textblock}{128}(0,30)
 \centering
-Model:\vspace{0.1cm}
+ 
 
 \includegraphics[page=8,width=0.6\textwidth]{imagenes/forkingPath}
 
-\scriptsize Belief: \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath}
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath}
 \end{textblock}
 }
 
-\only<4>{
-\begin{textblock}{128}(0,28)
+\only<10>{
+ \begin{textblock}{128}(0,30)
 \centering
-Model:\vspace{0.1cm}
+ 
 
 \includegraphics[page=9,width=0.6\textwidth]{imagenes/forkingPath}
 
-\scriptsize Belief: \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath}
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath}
 \end{textblock}
 }
 
-\only<5>{
-\begin{textblock}{128}(0,28)
+\only<11>{
+ \begin{textblock}{128}(0,30)
 \centering
-Model:\vspace{0.1cm}
+ 
 
 \includegraphics[page=10,width=0.6\textwidth]{imagenes/forkingPath}
 
-\scriptsize Belief: \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath}
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath}
 \end{textblock}
 }
 
-\only<6>{
-\begin{textblock}{128}(0,28)
+\only<12->{
+ \begin{textblock}{128}(0,30)
 \centering
-Model:\vspace{0.1cm}
+ 
 
 \includegraphics[page=11,width=0.6\textwidth]{imagenes/forkingPath}
 
-\scriptsize Belief: \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath}
+\scriptsize Ways given $M$ and $B=$ \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath}
 \end{textblock}
 }
 
-\only<2>{
-\begin{textblock}{128}(0,70)
+
+
+
+
+\only<7>{
+\begin{textblock}{128}(0,67)
  \centering \scriptsize
  
  \begin{table}[H]
-\begin{tabular}{cc}
- \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
-  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
- & \\
- & \\
- & \\
- & \\
+ \tiny 
+\begin{tabular}{cccccc}
+ \ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& \textcolor{white}{Likelihood} & \textcolor{white}{Prior} & \textcolor{white}{Posterior $\propto$} & \textcolor{white}{Posterior}
+\\ \cline{1-2} \\[-0.2cm]
+
+\includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &   & \textcolor{white}{$\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $} &  &  & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & & \\[2pt]  \\[-0.2cm]
+ & & & & &
 \end{tabular}
 \end{table}
 \end{textblock}
 
 }
 
-\only<3>{
-\begin{textblock}{128}(0,70)
+
+
+\only<8>{
+\begin{textblock}{128}(0,67)
  \centering \scriptsize
  
  \begin{table}[H]
-\begin{tabular}{cc}
- \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
-  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
- \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
- & \\
- & \\
- & \\
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& \textcolor{white}{Likelihood} & \textcolor{white}{Prior} & \textcolor{white}{Posterior $\propto$} & \textcolor{white}{Posterior}
+\\ \cline{1-2} \\[-0.2cm]
+
+\includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} & $0 \times 4 \times 0 = 0$  & \textcolor{white}{$\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $} &  &  & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & & \\[2pt]  \\[-0.2cm]
+ & & & & &
 \end{tabular}
 \end{table}
 \end{textblock}
 
 }
 
-\only<4>{
-\begin{textblock}{128}(0,70)
+\only<9>{
+\begin{textblock}{128}(0,67)
  \centering \scriptsize
  
  \begin{table}[H]
-\begin{tabular}{cc}
- \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
-  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
- \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
- \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ \\
- & \\
- & \\
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+&Likelihood&Prior&Posterior $\propto$& \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & & \\[2pt]  \\[-0.2cm]
+ & & & & &
 \end{tabular}
 \end{table}
 \end{textblock}
 
 }
 
-\only<5>{
-\begin{textblock}{128}(0,70)
+\only<10>{
+\begin{textblock}{128}(0,67)
  \centering \scriptsize
  
  \begin{table}[H]
-\begin{tabular}{cc}
- \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
-  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
- \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
- \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ \\
- \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ \\
- & \\
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  & & & & &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & & \\[2pt]  \\[-0.2cm]
+ & & & & &
 \end{tabular}
 \end{table}
 \end{textblock}
 
 }
 
-\only<6>{
-\begin{textblock}{128}(0,70)
+\only<11>{
+\begin{textblock}{128}(0,67)
  \centering \scriptsize
  
  \begin{table}[H]
-\begin{tabular}{cc}
- \ \ \ Belief \ \ \ & Ways to produce \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}   \\ \hline
-  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ \\
- \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ \\
- \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ \\
- \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ \\
- \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ \\
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  & & & & &\\[2pt]
+  & & & & & \\[2pt]  \\[-0.2cm]
+ & & & & &
 \end{tabular}
 \end{table}
 \end{textblock}
 
 }
 
-\end{frame}
-
-\begin{frame}
+\only<12>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
  
- \footnotesize
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&\\[2pt]
+  & & & & & \\[2pt]  \\[-0.2cm]
+ & & & & &
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+
+\only<13>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
  
- $\bullet$ \textbf{Prior} belief (distribution):
- \begin{equation*}
-P(B) = \frac{1}{\# \text{Beliefs} }  \ \ \ \ \  \forall B \in \text{Beliefs}  
- \end{equation*}
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
 
-\pause \vspace{0.3cm}
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ &$0/64$&$1/5$ &$\frac{0}{64}\frac{1}{5}$&\\[2pt]  \\[-0.2cm]
+ & & & & &
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+
+\only<14>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
  
- $\bullet$ \textbf{Likelihood} (distribution):
- \begin{equation*}
-P(D|B) = \frac{\text{Ways to produce $D$ given $B$}}{\text{Total ways given $B$}} \ \ \ \ \  \forall B \in \text{Beliefs}  
- \end{equation*}
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
 
-\pause \vspace{0.3cm}
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ &$0/64$&$1/5$ &$\frac{0}{64}\frac{1}{5}$&\\[2pt]  \cline{5-5} \\[-0.2cm]
+ & & & & $P(D|M)$ &
+\end{tabular}
+\end{table}
+\end{textblock}
 
-$\bullet$ \textbf{Evidence} or Average likelihood (scalar):
-\begin{equation*}
- P(D) = \sum_{B \in \text{Beliefs}} \underbrace{P(D|B)}_{\text{likelihood}} \underbrace{P(B)}_{\text{prior}}
-\end{equation*}
+}
 
-\pause \vspace{0.3cm}
 
-$\bullet$ \textbf{Posterior} belief (distribution):
 
-\begin{equation*}
- P(B|D) = \frac{P(D|B)P(D)}{P(D)}\ \ \ \ \  \forall B \in \text{Beliefs}  
-\end{equation*}
-
+\only<15>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
  
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & \textcolor{white}{Posterior}
+\\ \cline{1-5} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & \textcolor{white}{$\frac{0}{3+8+9} =  0.00 $}
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ &$0/64$&$1/5$ &$\frac{0}{64}\frac{1}{5}$&\\[2pt] \cline{5-5} \\[-0.2cm]
+ & & & & $\frac{3 + 8 + 9 }{64 \cdot 5} $&
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+
+\only<16>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
  
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & Posterior
+\\ \cline{1-6} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & $ \frac{0}{64}\frac{1}{5}  \frac{64\cdot 5}{3+8+9}$
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\textcolor{white}{$\frac{3}{3+8+9} =  0.00 $}\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ &$0/64$&$1/5$ &$\frac{0}{64}\frac{1}{5}$&\\[2pt] \cline{5-5} \\[-0.2cm]
+ & & & & $\frac{3 + 8 + 9 }{64 \cdot 5} $&
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+
+\only<17>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & Posterior
+\\ \cline{1-6} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & $\frac{0}{3+8+9} =  0.00 $
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ &\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&\\[2pt]
+  \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ &$0/64$&$1/5$ &$\frac{0}{64}\frac{1}{5}$&\\[2pt] \cline{5-5} \\[-0.2cm]
+ & & & & $\frac{3 + 8 + 9 }{64 \cdot 5} $&
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
+
+\only<18>{
+\begin{textblock}{128}(0,67)
+ \centering \scriptsize
+ 
+ \begin{table}[H]
+ \tiny 
+\begin{tabular}{cccccc}
+\ \ \ Belief \ \ \ &  Ways to produce  \includegraphics[page=1,width=0.045\textwidth]{imagenes/forkingPath}  
+& Likelihood & Prior & Posterior $\propto$ & Posterior
+\\ \cline{1-6} \\[-0.2cm]
+
+  \includegraphics[page=2,width=0.05\textwidth]{imagenes/forkingPath} &  $0 \times 4 \times 0 = 0$ 
+ & $\frac{0 \times 4 \times 0 }{4 \times 4 \times 4 } = \frac{0}{64} $  & $1/5$ & $\frac{0}{64}\frac{1}{5}$ & $\frac{0}{3+8+9} =  0.00 $ 
+ \\[2pt]
+  \includegraphics[page=3,width=0.05\textwidth]{imagenes/forkingPath} &  $1 \times 3 \times 1 = 3$ 
+ &$ 3/64 $ & $1/5$ & $\frac{3}{64}\frac{1}{5}$&$\frac{3}{3+8+9} = 0.15$\\[2pt]
+  \includegraphics[page=4,width=0.05\textwidth]{imagenes/forkingPath} &  $2 \times 2 \times 2 = 8$ &$8/64$&$1/5$ &$\frac{8}{64}\frac{1}{5}$ & $\frac{8}{3+8+9}=0.40$\\[2pt]
+  \includegraphics[page=5,width=0.05\textwidth]{imagenes/forkingPath} &  $3 \times 1 \times 3 = 9$ &$9/64$&$1/5$ &$\frac{9}{64}\frac{1}{5}$&$\frac{9}{3+8+9}=0.45$\\[2pt]
+  \includegraphics[page=6,width=0.05\textwidth]{imagenes/forkingPath} &  $4 \times 0 \times 4 = 0$ &$0/64$&$1/5$ &$\frac{0}{64}\frac{1}{5}$&$\frac{0}{3+8+9}=0.00$\\[2pt] \cline{5-5} \\[-0.2cm]
+ & & & & $\frac{3 + 8 + 9 }{64 \cdot 5} $ & 
+\end{tabular}
+\end{table}
+\end{textblock}
+
+}
+
 \end{frame}
 
 \subsection{The garden of (continuous) forking paths }
@@ -413,58 +751,95 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 \begin{frame}
  \begin{textblock}{128}(0,8)
 \begin{center}
- \normalsize Elo model
+ \normalsize Bayesian Elo factor graph
 \end{center}
 \end{textblock}
+\vspace{0.6cm}
 
-\centering{
-\includegraphics[width=0.9\textwidth]{imagenes/elo-en}   
-}
+\centering
+\includegraphics[width=0.85\textwidth]{imagenes/elo-factor-en}   
+
+\pause
+\vspace{0.3cm}
+
+\tiny
+The factor graphs specifies the way to compute the posterior, likelihood, and evidence.
+
+\href{https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=910572}{Kschischang FR, Frey BJ, Loeliger HA. Factor graphs and the sum-product algorithm. 2001}
 
 \end{frame}
 
 \begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \normalsize TrueSkill
-\end{center}
-\end{textblock}
-\vspace{0.5cm}
+%  \begin{textblock}{128}(0,8)
+% \begin{center}
+%  \normalsize Posterior
+% \end{center}
+% \end{textblock}
+% \vspace{0.5cm}
 
-\centering{
-\includegraphics[width=1\textwidth]{imagenes/trueskill_versionGeneral-en}   
-}
- 
- 
+
+\begin{textblock}{128}(0,12)
+\only<-6>{
 \begin{equation*}
- P(s|o,A) = \frac{P(o|s,A)P(s)}{P(o|A)}
+\overbrace{P(s_a \mid r_{ab}, \text{Elo model})}^{\text{Posterior}} \propto \overbrace{N(s_a \, | \, \widehat{\mu}_a, \widehat{\sigma}_a^2) }^{\text{Prior}} \, \overbrace{1-\Phi(s_a \, | \widehat{\mu}_b ,  2\beta^2 + \widehat{\sigma}_b^2)}^{\text{Likelihood}}  \ \ \  \ \ \text{Win case} 
 \end{equation*}
-
- 
-\end{frame}
-
-\begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \normalsize Posterior
-\end{center}
-\end{textblock}
-\vspace{0.5cm}
-
-\Wider[4em]{ 
-\begin{equation*}
- P(s_i \mid o, A) \propto 
- \begin{cases}
-  N(s_i \, | \, \mu_i, \sigma_i^2) \, \Phi(\delta(s_i) \, | \, 0, \vartheta - \sigma_i^2) & \text{Win} \\
-  N(s_i \, | \, \mu_i, \sigma_i^2 ) \, (1 - \Phi(\delta(s_i) \, | \, 0, \vartheta - \sigma_i^2)) & \text{Loose}
- \end{cases}
-\end{equation*}
-
-\includegraphics[width=0.49\textwidth]{imagenes/posterior_win}   
-\includegraphics[width=0.49\textwidth]{imagenes/posterior_loose}   
 }
-\end{frame}
+\end{textblock}
+\begin{textblock}{128}(0,12)
+\only<7->{
+\begin{equation*}
+\overbrace{P(s_a \mid r_{ab}, \text{Elo model})}^{\text{Posterior}} \propto \overbrace{N(s_a \, | \, \widehat{\mu}_a, \widehat{\sigma}_a^2) }^{\text{Prior}} \, \overbrace{\Phi(s_a \, | \widehat{\mu}_b ,  2\beta^2 + \widehat{\sigma}_b^2)}^{\text{Likelihood}}  \ \ \  \ \ \text{Loose case} 
+\end{equation*}
+}
+\end{textblock}
 
+
+
+\begin{textblock}{128}(0,26)
+\centering
+\only<2>{\includegraphics[width=0.49\textwidth]{imagenes/posterior_win} 
+}
+\end{textblock}
+
+\begin{textblock}{128}(0,26)
+\centering
+\only<3>{\includegraphics[page=2,width=0.49\textwidth]{imagenes/posterior_win} 
+}
+\end{textblock}
+
+\begin{textblock}{128}(0,26)
+\centering
+\only<4>{\includegraphics[page=3,width=0.49\textwidth]{imagenes/posterior_win} 
+}
+\end{textblock}
+
+\begin{textblock}{128}(0,26)
+\centering
+\only<5>{\includegraphics[page=4,width=0.49\textwidth]{imagenes/posterior_win} 
+}
+\end{textblock}
+
+
+\begin{textblock}{128}(0,26)
+\centering
+\only<6>{\includegraphics[page=5,width=0.49\textwidth]{imagenes/posterior_win} 
+}
+\end{textblock}
+
+\begin{textblock}{128}(0,26)
+\centering
+\only<7->{\includegraphics[width=0.49\textwidth]{imagenes/posterior_loose} 
+}
+\end{textblock}
+
+
+\begin{textblock}{128}(0,93)
+\centering
+\only<8>{\tiny For a detailed demostration, see \href{https://journals.plos.org/plosone/article/file?type=supplementary&id=info:doi/10.1371/journal.pone.0211014.s002}{Landfried. TrueSkill: Technical Report. 2019} }
+\end{textblock}
+
+%\includegraphics[width=0.49\textwidth]{imagenes/posterior_loose}   
+\end{frame}
 
 \section{Bayesian model inference}
 
@@ -474,97 +849,189 @@ $\bullet$ \textbf{Posterior} belief (distribution):
  \Large Bayesian model inference
 \end{center}
 \end{textblock}
-\vspace{0.5cm}
-\Wider[3em]{ 
+\vspace{1cm}
+
 $\bullet$ Which are our beliefs about different hidden models $M$?
 \pause
 \begin{equation*}
  P(M_k|D) = \frac{P(D|M_k)P(M_k)}{\sum_{i=1}^n P(D|M_i) P(M_i)}
 \end{equation*}
 
-\pause \vspace{0.2cm}
-
+ \vspace{0.2cm}
+\pause
 $\bullet$To compare models we can compute their ratio probability,
+\pause
 \begin{equation*}
- \text{Bayes factor}(q,r) = \frac{P(M_q|D)}{P(M_r|D)} = \frac{P(D|M_q)P(M_q)}{P(D|M_r)P(M_r)} \pause = \frac{P(D|M_q)}{\underbrace{P(D|M_r)}_{\text{\scriptsize Evidence!}}}   
+\begin{split}
+ \text{Bayes factor}(q,r) = \frac{P(M_q|D)}{P(M_r|D)} & = \frac{P(D|M_q)P(M_q)}{P(D|M_r)P(M_r)} \\ \onslide<5->{
+ & \overset{*}{=} \frac{P(D|M_q)}{\underbrace{P(D|M_r)}_{\text{\scriptsize Evidence!}}} }
+\end{split}
 \end{equation*}
 
-\pause \vspace{0.2cm}
+\begin{textblock}{128}(96,55)
+\onslide<5->{\tiny $* \ \hfrac{\text{With no prior preferences}}{P(M_q) = P(M_r)}$   }
+\end{textblock}
 
-}
+
+
+\pause \pause
 
 \begin{mdframed}[backgroundcolor=black!20]
 \centering
-$P(M_q|D) > P(M_r|D) \Longleftrightarrow P(D|M_q) > P(D|M_r)$
+$P(M_q|D) > P(M_r|D) \overset{*}{\Longleftrightarrow} P(D|M_q) > P(D|M_r)$
 
 \end{mdframed}
 
+\pause
 
 \begin{center}
- \Large All you need is evidence
+ \large All you need is evidence
 \end{center} 
+
+
+\only<8>{
+\begin{textblock}{128}(0,92)
+\centering \tiny For a dicussion of bayes factor see \href{http://xyala.cap.ed.ac.uk/teaching/tutorials/phylogenetics/Bayesian_Workshop/PDFs/Kass\%20and\%20Raftery\%201995.pdf}{Kass \& Raftery. Bayes factors. 1995.}
+\end{textblock}
+}
 
  
 \end{frame}
 
+
 \subsection{Evidence}
+
 
 \begin{frame}
 \begin{textblock}{128}(0,8)
 \begin{center}
- \large Evidence vs data science metrics
+ \large \ \ \ \  Evidence 
+\end{center}
+\end{textblock}
+\vspace{1cm}
+ 
+ \centering{
+ \includegraphics[width=0.9\textwidth]{imagenes/evidence}
+ }
+ 
+ \pause
+
+ \begin{mdframed}[backgroundcolor=black!15]
+\centering
+Evience encode a trade-off between complexity and prediciton.
+%Simple models fit a small fraction of data sets, but they assign higher probability to those data points and vice versa. 
+\end{mdframed}
+ 
+\end{frame}
+
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large Evidence vs maximum likelihood
 \end{center}
 \end{textblock}
 \vspace{0.75cm}
 
-
-\Wider[1cm]{
-\begin{center}
- Which model has highest probability given the observed data $D$
- \end{center}
-}
-
-
- \begin{table}[H]
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
- Ana & 0.6 & 0.4 & 0.4 & 0.4 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 \\ 
-\hline \hline
- Observed& \includegraphics[width=0.02\textwidth]{imagenes/sol}  & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} \\
-\hline \hline
- Berta & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0   \\
- \hline
-\end{tabular}
-\end{table}
-
-\pause
-
-\Wider[1cm]{
-\begin{itemize}
- \item[$\bullet$] Berta seems to do a better job according to all data science metrics
- 
- \item[$\bullet$] However Ana's model assigns highest probability to the observed data!! 
-\end{itemize}
-}
-
-\pause \vspace{0.2cm}
-
-  \begin{table}[H]
-\begin{tabular}{c|c}
- & $P(D|M) = \prod P(D_i|M)$ \\ \hline
- Ana &  $0.4^{10}= 10.1E^{-5}$  \\
-Berta & $1.0^8  \times 0^2 = 0 = 1E^{-\infty}$\\
- \end{tabular}
-\end{table}
-\vspace{-0.1cm}
-\begin{framed}
-\centering 
-
-Ana has an infinitely more likely model
-\end{framed}
+\centering{
+ \includegraphics[width=0.8\textwidth]{imagenes/minka.png}
+ }
 
 
 \end{frame}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large Evidence vs maximum likelihood
+\end{center}
+\end{textblock}
+\vspace{1cm}
+\Wider[4em]{
+
+\centering{
+ \includegraphics[width=0.49\textwidth]{imagenes/minka_evidence.png}
+ \includegraphics[width=0.49\textwidth]{imagenes/minka_likelihood.png}
+ }
+
+ \vspace{0.3cm}
+\pause
+
+}
+
+\begin{mdframed}[backgroundcolor=black!15]
+\centering \normalsize
+With evidence there is no need for regularization% It automatically encodes a preference for simpler, more constrained models.
+\end{mdframed}
+
+\only<3>{
+\begin{textblock}{128}(0,92)
+\centering \tiny For more examples see \href{http://alumni.media.mit.edu/~tpminka/statlearn/demo/}{Tom Minka} 
+\end{textblock}}
+
+\end{frame}
+
+
+% \begin{frame}
+% \begin{textblock}{128}(0,8)
+% \begin{center}
+%  \large Evidence vs data science metrics
+% \end{center}
+% \end{textblock}
+% \vspace{0.75cm}
+% 
+% 
+% \Wider[1cm]{
+% \begin{center}
+%  Which model has highest probability given the observed data $D$
+%  \end{center}
+% }
+% 
+% 
+%  \begin{table}[H]
+% \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+% \hline
+%  Ana & 0.6 & 0.4 & 0.4 & 0.4 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 \\ 
+% \hline \hline
+%  Observed& \includegraphics[width=0.02\textwidth]{imagenes/sol}  & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} \\
+% \hline \hline
+%  Berta & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0   \\
+%  \hline
+% \end{tabular}
+% \end{table}
+% 
+% \pause
+% 
+% \Wider[1cm]{
+% \begin{itemize}
+%  \item[$\bullet$] Berta seems to do a better job according to almost all data science metrics: 
+% 
+%  \emph{MSE, MAE, Hit Rate, Accuracy, Precision, Recall, F-Score, ROC Area}
+%  \pause
+%  \item[$\bullet$] However Ana's model assigns highest probability to the observed! 
+%  
+%  \textbf{\emph{Evidence, Cross Entropy}}
+% \end{itemize}
+% }
+% 
+% \pause \vspace{0.2cm}
+% 
+%   \begin{table}[H]
+% \begin{tabular}{c|c}
+%  & $P(D|M) = \prod P(D_i|M)$ \\ \hline
+%  Ana &  $0.4^{10}= 10.1E^{-5}$  \\
+% Berta & $1.0^8  \times 0^2 = 0 = 1E^{-\infty}$\\
+%  \end{tabular}
+% \end{table}
+% \vspace{-0.1cm}
+% \begin{framed}
+% \centering 
+% 
+% Ana has an infinitely more likely model
+% \end{framed}
+% 
+% 
+% \end{frame}
 
 
 % 
@@ -595,59 +1062,27 @@ Ana has an infinitely more likely model
 % 
 
 
-
-
 \begin{frame}
-\begin{textblock}{128}(0,8)
-\begin{center}
- \large Evidence vs maximum likelihood
-\end{center}
-\end{textblock}
-\vspace{0.75cm}
-
-\centering{
- \includegraphics[width=0.8\textwidth]{imagenes/minka.png}
- }
-
-
-\end{frame}
-
-
-\begin{frame}
-\begin{textblock}{128}(0,8)
-\begin{center}
- \large Evidence vs maximum likelihood
-\end{center}
-\end{textblock}
-\vspace{1cm}
-\Wider[4em]{
-
-\centering{
- \includegraphics[width=0.49\textwidth]{imagenes/minka_evidence.png}
- \includegraphics[width=0.49\textwidth]{imagenes/minka_likelihood.png}
- }
-}
-
-\begin{mdframed}[backgroundcolor=black!15]
-\centering \Large
-We do not need any test set
-\end{mdframed}
-
-\end{frame}
-
-\begin{frame}
-\begin{textblock}{128}(0,8)
-\begin{center}
- \large Evidence 
-\end{center}
-\end{textblock}
-\vspace{1cm}
  
- \centering{
- \includegraphics[width=1\textwidth]{imagenes/evidence}
- }
+ \vspace{1cm}
+ 
+ \begin{center}
+  \huge
+  Why evidence is not widely used in machine learning?
+ \end{center}
+
+ \vspace{1cm}
+\pause
+ 
+ \begin{framed}
+  \centering \large First let's take a look at Bayesian no-doubt case
+ \end{framed}
+
+  
+ 
  
 \end{frame}
+
 
 
 \section{Bayesian no-doubt case}
@@ -682,9 +1117,33 @@ We do not need any test set
 
 \end{frame}
 
+\begin{frame}
+ \vspace{0.5cm}
+
+
+\begin{center}
+ \centering \large
+  Who has no doubt? Who has only one belief?
+\end{center}
+ 
+ \vspace{0.3cm}
+ \pause
+ 
+ \begin{itemize}
+  \item[$\bullet$] God (if exists) \pause
+  \item[$\bullet$] Mathematicians (and others non empricial sciences) \pause
+  \item[$\bullet$] Maybe some extremists \pause
+  \item[$\bullet$] \textbf{All non-bayesian machine learning} \pause (the hacked-belief approach)
+ \end{itemize}
+
+ 
+\end{frame}
+
+
 
 
 \subsection{The hacked-belief approach}
+
 
 \begin{frame}
  \begin{textblock}{128}(0,8)
@@ -694,61 +1153,35 @@ We do not need any test set
 \end{textblock}
 \vspace{0.5cm}
 
-
 \begin{center}
- 
- \begin{mdframed}
- \centering
-  Who has no doubt? Who has only one belief?
- \end{mdframed}
- 
- \vspace{0.3cm}
- \pause
- 
- \begin{itemize}
-  \item[$\bullet$] God (if exists) \pause
-  \item[$\bullet$] Mathematicians (and others non empricial sciences) \pause
-  \item[$\bullet$] Maybe some extremists \pause
-  \item[$\bullet$] \huge All non-bayesian machine learning
- \end{itemize}
-
- 
- 
- 
+ \centering  $ \overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}$  
 \end{center}
-
- 
-\end{frame}
-
-
-\begin{frame}
- \begin{textblock}{128}(0,8)
-\begin{center}
- \large The great dishonesty
-\end{center}
-\end{textblock}
-
-\begin{mdframed}
- \centering{ $\overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}_{D,M}$  }
-\end{mdframed}
 
 \vspace{0.6cm}
+\pause
 
  \begin{equation*}
-\begin{split}
-P(D|\widehat{B}_{D,M},M) & = \overbrace{P(D|\underset{B}{\text{argmax}} P(D|B,M), M)}^{\hfrac{\text{\scriptsize Hacked \textbf{likelihood} }}{\text{\scriptsize  given training data}}} = \overbrace{P(D|D, M)}^{\hfrac{\text{\scriptsize Hacked \textbf{evidence} }}{\text{\scriptsize given training data}}}%\\
-%&= \int_B P(D|B,M) \mathbb{I}(B=\widehat{B}_{D,M} ) dB
-\end{split}
- \end{equation*}
+\overbrace{P(D|M)}^{\text{\scriptsize Hacked \textbf{evidence}}} = \ \ \overbrace{P(D|\widehat{B},M)}^{\text{\scriptsize Hacked \textbf{likelihood} }} \pause  = \  \underbrace{P(\overset{\downarrow}{D}|\underset{B}{\text{argmax}} P(\overset{\downarrow}{D}|B,M), M)}_{\text{\scriptsize Data appears back and forth!!}}
+\end{equation*}
 
 
  \pause
  \vspace{0.6cm}
- 
-\centering{\large With great dishonesty, comes great regularization {\tiny \href{http://bit.ly/slides_regularizacion}{Zivik talk}} }
- 
+
+ \begin{mdframed}[backgroundcolor=black!15]
+ \centering \large With great hacked-belief approach comes great overfitting!  
+  \end{mdframed}
  
 
+ \only<4>{
+\begin{textblock}{128}(0,91)
+\centering
+ \tiny How regularization techniques for hacked-belief approach can be thought of as approximations to Bayesian inference see 
+ 
+ \href{http://bit.ly/slides_regularizacion}{Zivik talk. With great complexity comes great regularization}  
+\end{textblock}
+}
+ 
 \end{frame}
 
 

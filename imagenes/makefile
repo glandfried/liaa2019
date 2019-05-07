@@ -9,6 +9,7 @@ all:
 	pdflatex trueSynergy-en.tex
 	pdflatex trueskill_versionGeneral-en.tex
 	pdflatex elo-en.tex
+	pdflatex elo-factor-en.tex
 
 
 

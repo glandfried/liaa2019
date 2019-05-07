@@ -55,21 +55,74 @@ posterior <- apply(diag(dim(m)[1],dim(m)[1])*m,2,sum)
 index_max <- which.max(posterior)
 max_post <- mu1_grilla[index_max]
 
+ejes <- function(){
+  axis(side=2, labels=NA,cex.axis=0.6,tck=0.015)
+  axis(side=1, labels=NA,cex.axis=0.6,tck=0.015)
+  axis(lwd=0,side=1, at=0, labels=0,cex.axis=1.25,line=-0.3)
+  axis(lwd=0,side=1, at=mu[1], labels=expression(mu[a]),cex.axis=1.25,line=-0.85,tck=0.015)
+  abline(v=mu[1],lty=3)
+  mtext(text= expression(Skill[a]),side =1,line=2,cex=1.75)
+  mtext(text ="Density" ,side =2,line=1,cex=1.75)
+  
+}
 
-plot(mu1_grilla, sorpresa_de_ganar(mu1_grilla,mu,sigma),type="l",axes = F,ann = F,lty=1,lwd=2)
-lines(mu1_grilla, prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma)),lty=2,lwd=2)
+plot(mu1_grilla, prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma)),lty=2,lwd=2,type="l",axes = F,ann = F)
+ejes()
+legend(mu1_grilla[12*length(mu1_grilla)%/%20],0.95,lty = c(2),lwd=c(2),
+       legend = c("Prior"),bty = "n",cex = 1.5)
+
+
+
+plot(mu1_grilla, prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma)),lty=2,lwd=2,type="l",axes = F,ann = F)
+lines(mu1_grilla, sorpresa_de_ganar(mu1_grilla,mu,sigma),lty=1,lwd=2)
+ejes()
+legend(mu1_grilla[12*length(mu1_grilla)%/%20],0.95,lty = c(2,1),lwd=c(2,2),
+       legend = c("Prior","Likelihood" ),bty = "n",cex = 1.5)
+mid = mu[1]-(sum(mu[1:2])-sum(mu[3:4]))
+
+yy <- c(sorpresa_de_ganar(mu1_grilla,mu,sigma),rep(1,length(mu1_grilla)))
+xx <- c(mu1_grilla,rev(mu1_grilla))      
+polygon(xx,yy,col=rgb(0,0,0,0.075),border=F)
+
+
+plot(mu1_grilla, prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma)),lty=2,lwd=2,type="l",axes = F,ann = F)
+lines(mu1_grilla, sorpresa_de_ganar(mu1_grilla,mu,sigma),lty=1,lwd=2)
+ejes()
+mid = mu[1]-(sum(mu[1:2])-sum(mu[3:4]))
+
+yy <- c(sorpresa_de_ganar(mu1_grilla,mu,sigma),rep(1,length(mu1_grilla)))
+xx <- c(mu1_grilla,rev(mu1_grilla))      
+polygon(xx,yy,col=rgb(0,0,0,0.075),border=F)
+
+
 posterior2 <- sorpresa_de_ganar(mu1_grilla,mu,sigma)*prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma))
 lines(mu1_grilla,posterior2 ,lty=4,lwd=2)
 
-axis(side=2, labels=NA,cex.axis=0.6,tck=0.015)
-axis(side=1, labels=NA,cex.axis=0.6,tck=0.015)
-axis(lwd=0,side=1, at=0, labels=0,cex.axis=1.25,line=-0.3)
-axis(lwd=0,side=1, at=mu[1], labels=expression(mu[1]),cex.axis=1.25,line=-0.85,tck=0.015)
-abline(v=mu[1],lty=3)
+legend(mu1_grilla[12*length(mu1_grilla)%/%20],0.95,lty = c(2,1,4),lwd=c(2,2,2),
+       legend = c("Prior","Likelihood",expression("Posterior"%prop%"") ),bty = "n",cex = 1.5)
+
+
+plot(mu1_grilla, prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma)),lty=2,lwd=2,type="l",axes = F,ann = F)
+lines(mu1_grilla, sorpresa_de_ganar(mu1_grilla,mu,sigma),lty=1,lwd=2)
+ejes()
+mid = mu[1]-(sum(mu[1:2])-sum(mu[3:4]))
+
+yy <- c(sorpresa_de_ganar(mu1_grilla,mu,sigma),rep(1,length(mu1_grilla)))
+xx <- c(mu1_grilla,rev(mu1_grilla))      
+polygon(xx,yy,col=rgb(0,0,0,0.075),border=F)
+
+
+posterior2 <- sorpresa_de_ganar(mu1_grilla,mu,sigma)*prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma))
+lines(mu1_grilla,posterior2 ,lty=4,lwd=2)
+
+legend(mu1_grilla[12*length(mu1_grilla)%/%20],0.95,lty = c(2,1,4),lwd=c(2,2,2),
+       legend = c("Prior","Likelihood",expression("Posterior"%prop%"") ),bty = "n",cex = 1.5)
+
+
 points(mu[1],sorpresa_de_ganar(mu[1],mu,sigma),pch=19,cex=1.5)
 points(max_post,posterior2[index_max],cex=1.5)
 
-mid = mu[1]-(sum(mu[1:2])-sum(mu[3:4]))
+
 #abline(v=mid,lty=3)
 #abline(h=sorpresa_de_ganar(mu[1],mu,sigma),lty=3)
 
@@ -79,10 +132,26 @@ mid = mu[1]-(sum(mu[1:2])-sum(mu[3:4]))
 #segments(mu[1],y+.01,mu[1],y-.01,lwd=2)
 #text(mid + (mu[1]-mid)/2, y+0.02,expression(delta) ,cex=1.33)
 
+plot(mu1_grilla, prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma)),lty=2,lwd=2,type="l",axes = F,ann = F)
+lines(mu1_grilla, sorpresa_de_ganar(mu1_grilla,mu,sigma),lty=1,lwd=2)
+ejes()
+mid = mu[1]-(sum(mu[1:2])-sum(mu[3:4]))
 
 yy <- c(sorpresa_de_ganar(mu1_grilla,mu,sigma),rep(1,length(mu1_grilla)))
 xx <- c(mu1_grilla,rev(mu1_grilla))      
 polygon(xx,yy,col=rgb(0,0,0,0.075),border=F)
+
+
+posterior2 <- sorpresa_de_ganar(mu1_grilla,mu,sigma)*prior(mu1_grilla,mu,sigma)/max(prior(mu1_grilla,mu,sigma))
+lines(mu1_grilla,posterior2 ,lty=4,lwd=2)
+
+legend(mu1_grilla[12*length(mu1_grilla)%/%20],0.95,lty = c(2,1,4),lwd=c(2,2,2),
+       legend = c("Prior","Likelihood",expression("Posterior"%prop%"") ),bty = "n",cex = 1.5)
+
+
+points(mu[1],sorpresa_de_ganar(mu[1],mu,sigma),pch=19,cex=1.5)
+points(max_post,posterior2[index_max],cex=1.5)
+
 
 yy <- c(posterior2,rep(0,length(mu1_grilla)))
 xx <- c(mu1_grilla,rev(mu1_grilla))      
@@ -90,12 +159,6 @@ polygon(xx,yy,col=rgb(0,0,0,0.3),border=F)
 
 
 text(max_post,0.15,"Evidence",srt=0, cex=1.75)
-
-mtext(text= expression(s[1]),side =1,line=2,cex=1.75)
-mtext(text ="Density" ,side =2,line=1,cex=1.75)
-
-legend(mu1_grilla[12*length(mu1_grilla)%/%20],0.95,lty = c(1,2,4),lwd=c(2,2,2),
-       legend = c("Likelihood","Prior",expression("Posterior"%prop%"") ),bty = "n",cex = 1.5)
 
 
 #######################################

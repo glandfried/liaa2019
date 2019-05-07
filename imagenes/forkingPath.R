@@ -121,7 +121,7 @@ forkingPath(c(1,1,19,19))
 forkingPath(c(1,19,19,19))
 forkingPath(c(19,19,19,19))
 
-creencia = c("4","3","2","1")
+creencia = c(1,1,1,1)
 
 plot(0,0,col=rgb(0,0,0,0),axes=F,ylab="",xlab="",ylim=c(-3,3),xlim=c(-3,3))
 
@@ -217,9 +217,7 @@ puntos(base2,2,pch=19,col=rgb(1,1,1,1),2)
 puntos(base2,2,pch=creencia,col=rgb(0,0,0,1))
 puntos(base3,3,pch=19,col=rgb(1,1,1,1),2)
 puntos(base3[1:4],3,pch=creencia,col=rgb(0,0,0,1))
-puntos(base2,2,pch=creencia,col=rgb(0,0,0,1))
 
-forkingPath(c("4","3","2","1"),path=F)
 forkingPath(c(1,1,1,1),path=F)
 
 ######

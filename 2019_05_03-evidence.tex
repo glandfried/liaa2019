@@ -918,7 +918,7 @@ $P(M_q|D) > P(M_r|D) \overset{*}{\Longleftrightarrow} P(D|M_q) > P(D|M_r)$
 
  \begin{mdframed}[backgroundcolor=black!15]
 \centering
-Evience encode a trade-off between complexity and prediciton.
+Evience encode a trade-off between complexity and prediction.
 %Simple models fit a small fraction of data sets, but they assign higher probability to those data points and vice versa. 
 \end{mdframed}
  
@@ -1131,7 +1131,7 @@ With evidence there is no need for regularization% It automatically encodes a pr
  
  \begin{itemize}
   \item[$\bullet$] God (if exists) \pause
-  \item[$\bullet$] Mathematicians (and others non empricial sciences) \pause
+  \item[$\bullet$] Mathematicians (and other non-empricial sciences) \pause
   \item[$\bullet$] Maybe some extremists \pause
   \item[$\bullet$] \textbf{All non-bayesian machine learning} \pause (the hacked-belief approach)
  \end{itemize}
@@ -1157,26 +1157,70 @@ With evidence there is no need for regularization% It automatically encodes a pr
  \centering  $ \overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}$  
 \end{center}
 
-\vspace{0.6cm}
+
 \pause
 
  \begin{equation*}
-\overbrace{P(D|M)}^{\text{\scriptsize Hacked \textbf{evidence}}} = \ \ \overbrace{P(D|\widehat{B},M)}^{\text{\scriptsize Hacked \textbf{likelihood} }} \pause  = \  \underbrace{P(\overset{\downarrow}{D}|\underset{B}{\text{argmax}} P(\overset{\downarrow}{D}|B,M), M)}_{\text{\scriptsize Data appears back and forth!!}}
+\overbrace{P(D|M)}^{\text{\scriptsize Hacked \textbf{evidence}}} = \ \ \overbrace{P(D|\widehat{B},M)}^{\text{\scriptsize Hacked \textbf{likelihood} }} \pause  = \  \underset{\text{Data appears back and forth!!}}{\overbrace{P(\underset{\uparrow}{D}|\underset{B}{\text{argmax}} P(\underset{\uparrow}{D}|B,M), M)}^{\text{\scriptsize Maximum likelihood}}}
 \end{equation*}
 
 
- \pause
- \vspace{0.6cm}
+\pause
 
- \begin{mdframed}[backgroundcolor=black!15]
+\vspace{0.3cm}
+
+\begin{mdframed}[backgroundcolor=black!15]
+\centering
+ \large Hacked evidence (with MLE) = Maximum likelihood
+\end{mdframed}
+
+\pause
+
+\vspace{0.3cm}
+\begin{center}
  \centering \large With great hacked-belief approach comes great overfitting!  
-  \end{mdframed}
+\end{center}
+  
  
+\end{frame}
 
- \only<4>{
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+\normalsize With great overfitting comes great regularization!
+\end{center}
+\end{textblock}
+
+
+
+\begin{center}
+ \centering  $ \overset{\text{The best belief after seeing the data}}{\text{\st{maximum a posteriori (estimator)} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) P(B|M) = \widehat{B}$  
+\end{center}
+
+
+\pause
+
+ \begin{equation*}
+\overbrace{P(D|M)}^{\text{\scriptsize Hacked \textbf{evidence}}} = \ \ \overbrace{P(D|\widehat{B},M)}^{\text{\scriptsize Hacked \textbf{likelihood} }} \pause  = \  \underset{\text{Again data appears back and forth!!}}{\overbrace{P(\underset{\uparrow}{D}|\underset{B}{\text{argmax}} P(\underset{\uparrow}{D}|B,M)P(B|M),M)}^{\text{\scriptsize Likelihood at maximum a posteriori}}}
+\end{equation*}
+
+\pause
+\vspace{0.4cm}
+
+\Wider[4em]{
+\begin{framed}
+\normalsize \centering
+Hacked evidence (with MAP) = L2 or L1 regularization
+\end{framed}
+}
+
+\pause 
+
+ \only<5->{
 \begin{textblock}{128}(0,91)
 \centering
- \tiny How regularization techniques for hacked-belief approach can be thought of as approximations to Bayesian inference see 
+ \tiny For more regularization techniques for hacked-belief approach see 
  
  \href{http://bit.ly/slides_regularizacion}{Zivik talk. With great complexity comes great regularization}  
 \end{textblock}
@@ -1184,6 +1228,42 @@ With evidence there is no need for regularization% It automatically encodes a pr
  
 \end{frame}
 
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large Evidence and data science metrics
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+\begin{center}
+ \normalsize Is there any data science metrics equivalent to evidence?
+\end{center}
+
+
+\begin{equation*}
+ \begin{split}
+\onslide<2->{\overbrace{P(D|M)}^{\text{Evidence}} }
+\onslide<3->{\propto \text{log} \, P(D|M) }
+&\onslide<4->{= \text{log} \left( \prod_{i=1}^{|D|} P(D_i|M) \right) }
+\onslide<5->{=  \sum_{i=1}^{|D|} \text{log} \, P(D_i|M)} \\
+&\onslide<6->{\propto  \frac{1}{|D|} \sum_{i=1}^{|D|} \text{log} P(D_i|M)}
+\onslide<7->{= E_p \left[ \text{log} \, P(D|M) \right] }  \\[2pt]
+& \onslide<8->{= E_p \left[ \text{log} \, q \right] }  
+\onslide<9->{= - \underbrace{H(p,q)}_{\text{Cross entropy}} } \\
+\end{split}
+\end{equation*}
+
+\onslide<10->{
+\begin{mdframed}[backgroundcolor=black!15]
+\centering \normalsize
+ Evidence $\propto$ Cross entropy \only<11->{(at validation data set)}
+\end{mdframed}
+}
+
+ 
+\end{frame}
 
 
 % 

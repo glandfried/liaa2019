@@ -3,7 +3,7 @@
 
 \title[Bayesian inference]{Evidence in favor of a scientific theory\\ \large With great complexity comes great honesty}
 
-\author[Gustavo Landfried]{Gustavo Landfried \\ \scriptsize \texttt{@GALandfried} \\\vspace{0.2cm}
+\author[Gustavo Landfried]{Gustavo Landfried \\ \scriptsize \texttt{@GALandfried} \includegraphics[width=0.025\textwidth]{../../Imagenes/twitter.png} \\ \vspace{0.2cm} 
 MSc in Anthropological Sciences \\
 PhD student in Computer Sciences 
 \vspace{-0.3cm}}
@@ -47,6 +47,7 @@ Allows us to optimally update a priori beliefs given a model and data.
 
 \section{Conditional probability}
 
+
 \begin{frame}
 \begin{textblock}{128}(0,8)
 \begin{center}
@@ -58,9 +59,9 @@ Allows us to optimally update a priori beliefs given a model and data.
 
 \begin{table}[H]
 \begin{tabular}{c|c|c|c}
- & $A_1$ & $A_2$ &  \\ \hline
- $B_1$& 4 & 2 & 6 \\ \hline
- $B_2$& 76 & 18 & 94\\ \hline
+ & Not infected & Infected &  \\ \hline
+ Not vaccinated& 4 & 2 & 6 \\ \hline
+ Vaccinated& 76 & 18 & 94\\ \hline
  & 80 & 20 & 100
 \end{tabular}
 \end{table}
@@ -72,7 +73,7 @@ Allows us to optimally update a priori beliefs given a model and data.
 \pause
 
 \begin{equation*}
- P(A_1|B_1) = \frac{P(B_1 \cap A_1)}{P(B_1)}
+ P(\text{Not infected}|\text{Vaccinated}) = \frac{P(\text{Vaccinated} \cap \text{Not infected})}{P(\text{Vaccinated})}
 \end{equation*}
 
 \pause 
@@ -80,7 +81,7 @@ Allows us to optimally update a priori beliefs given a model and data.
 \begin{mdframed}
 Bayes theorem:
 \begin{equation}
-  P(A_1|B_1) = \frac{P(B_1|A_1)P(A_1)}{P(B_1)}
+  P(A_1|B_1) = \frac{P(B_1 \cap A_1)}{P(B_1)} = \frac{P(B_1|A_1)P(A_1)}{P(B_1)}
 \end{equation}
 \end{mdframed}
 
@@ -98,21 +99,21 @@ Bayes theorem:
 
 
 { \footnotesize
- There is a test that correctly detects vampirism $95\%$ of the time.
+ There is a test that correctly detects zombies $95\%$ of the time.
  
- $\bullet$ $P(\text{positive}|\text{vampire})=0.95$
+ $\bullet$ $P(\text{positive}|\text{zombie})=0.95$
  
  \pause \medskip 
 
- One percent of the time it incorrectly detect normal personas as vampires.
+ One percent of the time it incorrectly detect normal persons as zombies.
  
  $\bullet$ $P(\text{positive}|\text{mortal})=0.01$
  
  \pause \medskip 
  
- We know that vampires are only $0.1\%$ of the population. 
+ We know that zombies are only $0.1\%$ of the population. 
  
- $\bullet$ $P(\text{vampire})=0.001$
+ $\bullet$ $P(\text{zombie})=0.001$
 
 }
 
@@ -122,11 +123,11 @@ Bayes theorem:
  Someone receive a positive test: 
  
  \pause
- She has \textbf{only 8.7\% chance} to actually be a vampire!?
+ She has \textbf{only 8.7\% chance} to actually be a zombie!?
 \end{center}
 
 \begin{equation*}
- P(\text{vampire}|\text{positive}) = \frac{P(\text{positive}|\text{vampire})P(\text{vampire})}{P(\text{positive})}
+ P(\text{zombie}|\text{positive}) = \frac{P(\text{positive}|\text{zombie})P(\text{zombie})}{P(\text{positive})}
 \end{equation*}
 
 \pause
@@ -134,10 +135,11 @@ Bayes theorem:
 
 \begin{mdframed}[backgroundcolor=black!15]
  \centering \normalsize
- In this example all frequencies were observable
+ In this example all frequencies were observables
 \end{mdframed}
 
 \end{frame}
+
 
 \subsection{The inferential jump}
 
@@ -147,50 +149,40 @@ Bayes theorem:
  \Large The inferential jump
 \end{center}
 \end{textblock}
+\vspace{0.7cm}
 
-\begin{textblock}{128}(0,25)
- \centering 
-  \textbf{Bayesian inference is about about hidden variables}
+\begin{center}
+  \textbf{Bayesian inference is about hidden variables}
 
- About our \textbf{belief distributions} of those hidden variables!
-\end{textblock}
+ About our \textbf{belief distributions} of those hidden variables! 
+\end{center}
 
-\begin{textblock}{128}(0,40)
-\only<2>{
+
+\onslide<2->{
 \begin{equation*}
 \underbrace{P(\text{Belief}|\text{Data})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
 \end{equation*}
 }
 
-\only<3->{  
+\vspace{0.4cm}
+
+\onslide<3->{  
+A model is always there!
+
+\vspace{-0.3cm}
+
 \begin{equation*}
 \underbrace{P(\text{Belief}|\text{Data},\text{Model})}_{\text{\scriptsize Posterior}} = \frac{\overbrace{P(\text{Data}|\text{Belief},\text{Model})}^{\text{\scriptsize Likelihood}} \overbrace{P(\text{Belief}|\text{Model})}^{\text{\scriptsize Prior}} }{\underbrace{P(\text{Data}|\text{Model})}_{\hfrac{\text{\scriptsize Evidence or}}{\text{\scriptsize Average likelihood}}}}
  \end{equation*} 
 }
-\end{textblock}
 
-
-\begin{textblock}{112}(8,70)
-\only<4->{ 
-To update our beliefs (posterior), we need to
-\vspace{-0.15cm}
- \begin{mdframed}[backgroundcolor=black!15] 
- \centering \large 
-  Consider every possible path in the model
-  that could have lead as to the observed data (likelihood).
- \end{mdframed}
- }
-\end{textblock}
-
- 
- 
 \end{frame}
 
-\section{The inferential jump}
 
 \begin{frame}
  
  \footnotesize
+ 
  
 $\bullet$ \textbf{Prior} belief (distribution):
  \begin{equation*}
@@ -200,7 +192,7 @@ P(B|M) = \frac{1}{\# \text{Beliefs} }  \ \ \ \ \  \forall B \in \text{Beliefs}
 \pause \vspace{0.3cm}
 
 
- $\bullet$ \textbf{Likelihood} or average ways that produce data (distribution):
+ $\bullet$ \textbf{Likelihood} or ways in which data may have been generated (distribution):
  \begin{equation*}
 P(D|B,M) =  \frac{\text{Ways to produce $D$ given $B$ and $M$}}{\text{Total ways given $B$ and $M$}} \ \ \ \ \  \forall  B \in \text{Beliefs}  
  \end{equation*}
@@ -225,10 +217,8 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 \begin{equation*}
  P(B|D,M) = \frac{P(D|B,M)P(B|M)}{P(D|M)}\ \ \ \ \  \forall B \in \text{Beliefs}  
 \end{equation*}
-
  
 \end{frame}
-
 
 
 \subsection{The garden of forking paths}
@@ -242,14 +232,27 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 \end{textblock}
 \vspace{0.5cm}
 
+ \begin{mdframed}[backgroundcolor=black!15] 
+ \centering To update our beliefs (posterior), we need to consider every possible path in the model that could have lead us to the observed data (likelihood).
+ \end{mdframed}
+ 
+\end{frame}
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large The garden of forking paths
+\end{center}
+\end{textblock}
+
 \begin{textblock}{128}(0,19)
 \centering
- Data: \includegraphics[page=1,width=0.065\textwidth]{imagenes/forkingPath} \hspace{0.3cm}
- Beliefs: \includegraphics[page=2,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=3,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=4,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=5,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=6,width=0.075\textwidth]{imagenes/forkingPath} 
+ Data (D): \includegraphics[page=1,width=0.065\textwidth]{imagenes/forkingPath} \hspace{0.3cm}
+ Beliefs (B): \includegraphics[page=2,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=3,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=4,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=5,width=0.075\textwidth]{imagenes/forkingPath}, \includegraphics[page=6,width=0.075\textwidth]{imagenes/forkingPath} 
 
  \vspace{0.2cm}
 
-  Model: Data $\sim \text{Binomial}(n,p)$\vspace{0.1cm}
+  Model (M): Data $\sim \text{Binomial}(n,p)$\vspace{0.1cm}
  
 \end{textblock}
 
@@ -270,7 +273,6 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 
 \end{textblock}
 }
-
 
 \only<3>{
 \begin{textblock}{128}(90,66)
@@ -346,7 +348,7 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 }
 
 
-\only<8>{
+\only<8-9>{
  \begin{textblock}{128}(0,30)
 \centering
  
@@ -358,7 +360,7 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 }
 
 
-\only<9>{
+\only<10>{
  \begin{textblock}{128}(0,30)
 \centering
  
@@ -369,7 +371,7 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 \end{textblock}
 }
 
-\only<10>{
+\only<11>{
  \begin{textblock}{128}(0,30)
 \centering
  
@@ -380,7 +382,7 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 \end{textblock}
 }
 
-\only<11>{
+\only<12>{
  \begin{textblock}{128}(0,30)
 \centering
  
@@ -391,7 +393,7 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 \end{textblock}
 }
 
-\only<12->{
+\only<13->{
  \begin{textblock}{128}(0,30)
 \centering
  
@@ -724,12 +726,12 @@ $\bullet$ \textbf{Posterior} belief (distribution):
 
 \end{frame}
 
-\subsection{The garden of (continuous) forking paths }
+\subsection{The garden of (continuous) forking paths}
 
 \begin{frame}
  \begin{textblock}{128}(0,8)
 \begin{center}
- \large The garden of (continuous) forking paths 
+ \large Bayesian skill estimator
 \end{center}
 \end{textblock}
 \vspace{1.25cm}
@@ -1258,7 +1260,9 @@ Hacked evidence (with MAP) = L2 or L1 regularization
 \onslide<10->{
 \begin{mdframed}[backgroundcolor=black!15]
 \centering \normalsize
- Evidence $\propto$ Cross entropy \only<11->{(at validation data set)}
+ Evidence $\propto$ Cross entropy 
+ 
+ \only<11->{(at validation data set, if hacked-belief approach)}
 \end{mdframed}
 }
 
@@ -1266,85 +1270,6 @@ Hacked evidence (with MAP) = L2 or L1 regularization
 \end{frame}
 
 
-% 
-% 
-% 
-% \begin{frame}
-%  
-%  \begin{center}
-%   \Large Annex
-%  \end{center}
-% 
-%  
-% \end{frame}
-% 
-% 
-% \begin{frame}
-% \begin{textblock}{128}(0,8)
-% \begin{center}
-% Annex 1 \\ 
-%  \scriptsize Proof: Deviance -- Bayes factor
-% \end{center}
-% \end{textblock}
-% \vspace{0.5cm}
-% 
-% 
-% \tiny
-% 
-% % 
-% Entropy of a probability distribution
-% \begin{equation}
-%  H(P(C)) = -E(log(P(C))) = - \sum_{i=1}^n P(C_i) log(P(C_i))
-% \end{equation}
-% 
-% \pause
-% \vspace{0.3cm}
-% 
-% $\bullet$ The log Bayes factor is essentially the relative distance to the truth
-% 
-% \begin{mdframed}[backgroundcolor=black!15]
-% \begin{equation}\footnotesize
-%   D_{KL}(p,q) - D_{KL}(p,r) \overset{\text{Annex 1}}{=} \frac{1}{|D|} \text{log}\left(\text{Bayes factor}(r,q)\right) 
-% \end{equation}
-% \end{mdframed}
-% 
-% 
-% 
-% \begin{equation}
-%  D_{KL}(p,q) = \sum_{i=1}^{|C|} p_i  (\text{log}(p_i) - \text{log}(q_i))
-% \end{equation}
-% With truth $P(C_i)=p_i$ and model $P(C_i|M_q)=q_i$, for each event $C_i \in C$%, and
-% 
-% 
-% 
-% 
-% \begin{equation}
-% \text{Deviance}(q,r) = D_{KL}(p,q) - D_{KL}(p,r) = \underbrace{\sum_{i=1}^{|C|} p_i \text{log}(r_i)}_{E[\text{log}(r)]} -\underbrace{\sum_{i=1}^{|C|} p_i \text{log}(q_i)}_{E[\text{log}(q)]}   
-%  \end{equation}
-% 
-%  
-%  \vspace{0.3cm}
-%  
-%  Where
-%  \begin{equation*}
-% \begin{align*}
-%  E[\text{log}(q)] & = \sum_{i=1}^{|C|} P(C_i) \text{log}(P(C_i|M_q))  \approx  \frac{1}{|D|} \sum_{i=1}^{|D|} \text{log}(P(D_i|M_q)) \\
-%  & = \frac{1}{|D|} \text{log}\left(\prod_{i=1}^{|D|} P(D_i|M_q)\right)= \frac{1}{|D|} \text{log}\underbrace{(P(D|M_q))}_{\text{Evidence!}}
-% \end{align*}
-% \end{equation*}
-% 
-% \vspace{0.3cm}
-% 
-% Then
-% \begin{equation*}
-% \begin{align*}
-% D_{KL}(p,q) - D_{KL}(p,r) & \approx \frac{1}{|D|} \text{log}(P(D|M_q)) - \frac{1}{|D|} \text{log}(P(D|M_q)) \\
-% & = \frac{1}{|D|} \text{log}\left(\frac{P(D|M_r)}{P(D|M_q)} \right) \\
-% & = \frac{1}{|D|} \text{log}\left(\text{Bayes factor}\right) 
-% \end{align*}
-%  \end{equation*}
-%  
-% \end{frame}
 
 \end{document}
 

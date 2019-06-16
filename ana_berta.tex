@@ -1,0 +1,331 @@
+\documentclass[shownotes]{beamer}
+\input{../../aux/diapo_encabezado.tex}
+
+\title[Bayesian inference]{Evidence in favor of a scientific theory\\ \large With great complexity comes great honesty}
+
+\author[Gustavo Landfried]{Gustavo Landfried \\ \scriptsize \texttt{@GALandfried} \includegraphics[width=0.025\textwidth]{../../Imagenes/twitter.png} \\ \vspace{0.2cm} 
+MSc in Anthropological Sciences \\
+PhD student in Computer Sciences 
+\vspace{-0.3cm}}
+\institute[DC-ICC-CONICET]{\includegraphics[width=0.4\textwidth]{../../Imagenes/dc-logo}}
+\date{}
+
+\begin{document}
+\begin{frame}[noframenumbering]
+ 
+ \begin{textblock}{100}(23,18)
+ \includegraphics[width=0.3\textwidth]{../../Imagenes/logo_licar} 
+ \end{textblock}
+  \begin{textblock}{100}(74,18)
+ \includegraphics[width=0.3\textwidth]{../../Imagenes/LIAA/logo_version_02} 
+ \end{textblock}
+
+\vspace{2.5cm}
+\maketitle
+ 
+\end{frame}
+
+\footnotesize
+
+
+\begin{frame}
+\begin{textblock}{128}(0,8)
+\begin{center}
+ \large Evidence vs data science metrics
+\end{center}
+\end{textblock}
+\vspace{0.75cm}
+
+
+\Wider[1cm]{
+\begin{center}
+ Which model has highest probability given the observed data $D$
+ \end{center}
+}
+
+
+ \begin{table}[H]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ Ana & 0.6 & 0.4 & 0.4 & 0.4 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 & 0.6 \\ 
+\hline \hline
+ Observed& \includegraphics[width=0.02\textwidth]{imagenes/sol}  & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/lluvia} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} & \includegraphics[width=0.02\textwidth]{imagenes/sol} \\
+\hline \hline
+ Berta & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0   \\
+ \hline
+\end{tabular}
+\end{table}
+
+\pause
+
+\Wider[1cm]{
+\begin{itemize}
+ \item[$\bullet$] Berta seems to do a better job according to almost all data science metrics: 
+
+ \emph{MSE, MAE, Hit Rate, Accuracy, Precision, Recall, F-Score, ROC Area}
+ \pause
+ \item[$\bullet$] However Ana's model assigns highest probability to the observed! 
+ 
+ \textbf{\emph{Evidence, Cross Entropy}}
+\end{itemize}
+}
+
+\pause \vspace{0.2cm}
+
+  \begin{table}[H]
+\begin{tabular}{c|c}
+ & $P(D|M) = \prod P(D_i|M)$ \\ \hline
+ Ana &  $0.4^{10}= 10.1E^{-5}$  \\
+Berta & $1.0^8  \times 0^2 = 0 = 1E^{-\infty}$\\
+ \end{tabular}
+\end{table}
+\vspace{-0.1cm}
+\begin{framed}
+\centering 
+
+Ana has an infinitely more likely model
+\end{framed}
+
+
+\end{frame}
+
+
+
+\subsection{Metricas}
+
+\begin{frame}
+\begin{table}[H]
+\centering
+\begin{tabular}{rlll}
+  \hline
+ & Ana & Berta & Gana \\ 
+  \hline
+Mean squared error & 3.6 & 2 & Berta \\ 
+  Mean absolute error & 6 & 2 & Berta \\ 
+  Hit rate & 0.4 & 0.8 & Berta \\ 
+  Accuracy & 0 & 0.8 & Berta \\ 
+  Precsion & 0 & 0.67 & Berta \\ 
+  Recall & NaN & 0.67 & Berta \\ 
+  F1 score & NaN & 0.25 & Berta \\ 
+  ROC area & 0 & 0.76 & Berta \\ 
+  Evidence & $10.4E^{-5}$ & 0 & Ana \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+ 
+ \vspace{1cm}
+ 
+ \begin{center}
+  \huge
+  Why evidence is not widely used in machine learning?
+ \end{center}
+
+ \vspace{1cm}
+\pause
+ 
+ \begin{framed}
+  \centering \large First let's take a look at Bayesian no-doubt case
+ \end{framed}
+
+  
+ 
+ 
+\end{frame}
+
+
+
+\section{Bayesian no-doubt case}
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \Large Bayesian no-doubt case
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+
+ \centering{Fixed beliefs, even with infinite new data}
+ \begin{mdframed}[backgroundcolor=black!15]
+ \centering
+ $\#$Beliefs = 1 $\Longrightarrow$ $\underbrace{P(B)}_{\text{\scriptsize Prior}} = \underbrace{P(B|D)}_{\text{\scriptsize Posterior}} \ \ \ \ \hfrac{\forall D \in \text{Data}}{\forall B \in \text{Beliefs}}$
+\end{mdframed}
+
+ \vspace{0.9cm}
+\pause 
+
+
+ \centering{Likelihood is just the Evidence}
+\begin{mdframed}[backgroundcolor=black!15]
+\centering
+ $\#$Beliefs = 1  $\Longleftrightarrow$ Likelihood = Evidence  
+\end{mdframed}
+ 
+
+ 
+
+\end{frame}
+
+\begin{frame}
+ \vspace{0.5cm}
+
+
+\begin{center}
+ \centering \large
+  Who has no doubt? Who has only one belief?
+\end{center}
+ 
+ \vspace{0.3cm}
+ \pause
+ 
+ \begin{itemize}
+  \item[$\bullet$] God (if exists) \pause
+  \item[$\bullet$] Mathematicians (and other non-empricial sciences) \pause
+  \item[$\bullet$] Maybe some extremists \pause
+  \item[$\bullet$] \textbf{All non-bayesian machine learning} \pause (the hacked-belief approach)
+ \end{itemize}
+
+ 
+\end{frame}
+
+
+
+
+\subsection{The hacked-belief approach}
+
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large The hacked-belief approach
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+\begin{center}
+ \centering  $ \overset{\text{The best belief after seeing the data}}{\text{\st{maximum likelihood estimator} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) = \widehat{B}$  
+\end{center}
+
+
+\pause
+
+ \begin{equation*}
+\overbrace{P(D|M)}^{\text{\scriptsize Hacked \textbf{evidence}}} = \ \ \overbrace{P(D|\widehat{B},M)}^{\text{\scriptsize Hacked \textbf{likelihood} }} \pause  = \  \underset{\text{Data appears back and forth!!}}{\overbrace{P(\underset{\uparrow}{D}|\underset{B}{\text{argmax}} P(\underset{\uparrow}{D}|B,M), M)}^{\text{\scriptsize Maximum likelihood}}}
+\end{equation*}
+
+
+\pause
+
+\vspace{0.3cm}
+
+\begin{mdframed}[backgroundcolor=black!15]
+\centering
+ \large Hacked evidence (with MLE) = Maximum likelihood
+\end{mdframed}
+
+\pause
+
+\vspace{0.3cm}
+\begin{center}
+ \centering \large With great hacked-belief approach comes great overfitting!  
+\end{center}
+  
+ 
+\end{frame}
+
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+\normalsize With great overfitting comes great regularization!
+\end{center}
+\end{textblock}
+
+
+
+\begin{center}
+ \centering  $ \overset{\text{The best belief after seeing the data}}{\text{\st{maximum a posteriori (estimator)} }}$ = $\underset{B }{\text{argmax}} P(D|B,M) P(B|M) = \widehat{B}$  
+\end{center}
+
+
+\pause
+
+ \begin{equation*}
+\overbrace{P(D|M)}^{\text{\scriptsize Hacked \textbf{evidence}}} = \ \ \overbrace{P(D|\widehat{B},M)}^{\text{\scriptsize Hacked \textbf{likelihood} }} \pause  = \  \underset{\text{Again data appears back and forth!!}}{\overbrace{P(\underset{\uparrow}{D}|\underset{B}{\text{argmax}} P(\underset{\uparrow}{D}|B,M)P(B|M),M)}^{\text{\scriptsize Likelihood at maximum a posteriori}}}
+\end{equation*}
+
+\pause
+\vspace{0.4cm}
+
+\Wider[4em]{
+\begin{framed}
+\normalsize \centering
+Hacked evidence (with MAP) = L2 or L1 regularization
+\end{framed}
+}
+
+\pause 
+
+ \only<5->{
+\begin{textblock}{128}(0,91)
+\centering
+ \tiny For more regularization techniques for hacked-belief approach see 
+ 
+ \href{http://bit.ly/slides_regularizacion}{Zivik talk. With great complexity comes great regularization}  
+\end{textblock}
+}
+ 
+\end{frame}
+
+
+\begin{frame}
+ \begin{textblock}{128}(0,8)
+\begin{center}
+ \large Evidence and data science metrics
+\end{center}
+\end{textblock}
+\vspace{0.5cm}
+
+\begin{center}
+ \normalsize Is there any data science metrics equivalent to evidence?
+\end{center}
+
+
+\begin{equation*}
+ \begin{split}
+\onslide<2->{\overbrace{P(D|M)}^{\text{Evidence}} }
+\onslide<3->{\propto \text{log} \, P(D|M) }
+&\onslide<4->{= \text{log} \left( \prod_{i=1}^{|D|} P(D_i|M) \right) }
+\onslide<5->{=  \sum_{i=1}^{|D|} \text{log} \, P(D_i|M)} \\
+&\onslide<6->{\propto  \frac{1}{|D|} \sum_{i=1}^{|D|} \text{log} P(D_i|M)}
+\onslide<7->{= E_p \left[ \text{log} \, P(D|M) \right] }  \\[2pt]
+& \onslide<8->{= E_p \left[ \text{log} \, q \right] }  
+\onslide<9->{= - \underbrace{H(p,q)}_{\text{Cross entropy}} } \\
+\end{split}
+\end{equation*}
+
+\onslide<10->{
+\begin{mdframed}[backgroundcolor=black!15]
+\centering \normalsize
+ Evidence $\propto$ Cross entropy 
+ 
+ \only<11->{(at validation data set, if hacked-belief approach)}
+\end{mdframed}
+}
+
+ 
+\end{frame}
+
+
+
+\end{document}
+
+
+
